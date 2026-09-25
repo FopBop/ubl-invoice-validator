@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
+  <cbc:CustomizationID>urn:cen.eu:en16931:2017</cbc:CustomizationID>
+  <cbc:ID>INV-2026-0001</cbc:ID>
+  <cbc:IssueDate>2026-09-25</cbc:IssueDate>
+  <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
+  <cac:AccountingSupplierParty>
+    <cac:Party>
+      <cac:PartyName><cbc:Name>Acme GmbH</cbc:Name></cac:PartyName>
+      <cac:PartyLegalEntity>
+        <cbc:CompanyID schemeID="VAT">DE123456789</cbc:CompanyID>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID><cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>
+  </cac:InvoiceLine>
+  <cac:LegalMonetaryTotal>
+    <cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>
+    <cbc:TaxExclusiveAmount currencyID="EUR">100.00</cbc:TaxExclusiveAmount>
+    <cbc:TaxInclusiveAmount currencyID="EUR">119.00</cbc:TaxInclusiveAmount>
+    <cbc:PayableAmount currencyID="EUR">119.00</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+</Invoice>
