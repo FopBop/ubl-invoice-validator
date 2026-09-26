@@ -193,6 +193,15 @@
   .skiplink{position:absolute;left:-9999px;top:0;background:var(--acc);color:var(--acc-ink);
     padding:10px 16px;border-radius:0 0 10px 0;font-weight:700;z-index:50;text-decoration:none}
   .skiplink:focus{left:0}
+  .steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:20px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px;position:relative}
+  .step .n{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:7px;font-size:12.5px;font-weight:800;
+    background:rgba(79,143,255,.13);border:1px solid rgba(79,143,255,.32);color:var(--acc-hi);margin-bottom:10px}
+  .step h3{font-size:14.5px;margin:0 0 3px}
+  .step p{margin:0;color:var(--mut);font-size:13.5px}
+  .bandhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .bandhead h2{margin:0}
+  .bandhead .muted{font-size:13.5px}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 </style>
 </head>
@@ -206,7 +215,7 @@
     </div>
     <nav class="navlinks" aria-label="Primary">
       <a href="#validator">Validate</a>
-      <a href="#how">How it works</a>
+      <a href="#how">Rules checked</a>
       <a href="#faq">FAQ</a>
       <a href="golive/index.html">Pricing</a>
     </nav>
@@ -234,6 +243,30 @@
 </header>
 
 <main class="wrap" id="main">
+  <section id="start" style="padding-top:14px">
+    <div class="bandhead">
+      <h2>From rejected to accepted, in three steps</h2>
+      <span class="muted">No account, no upload, no install.</span>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="n" aria-hidden="true">1</span>
+        <h3>Drop in your invoice</h3>
+        <p>Paste the XML or drop the <code>.xml</code> file. It stays on your device &mdash; nothing is uploaded.</p>
+      </div>
+      <div class="step">
+        <span class="n" aria-hidden="true">2</span>
+        <h3>Get the exact rule codes</h3>
+        <p>See which business rules failed (e.g. <code>BR-03a</code>) and where, mapped to the BT terms you already know.</p>
+      </div>
+      <div class="step">
+        <span class="n" aria-hidden="true">3</span>
+        <h3>Fix it and re-run</h3>
+        <p>Each finding comes with a one-line fix. Export the JSON report and hand it to your developer or ERP.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="validator">
     <div class="card">
       <div class="toolhead">

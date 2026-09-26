@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Validate on Python ${{ matrix.python-version }}
+    name: Test on Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -23,9 +23,21 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Compile check
-        run: python -m py_compile ublcheck.py
+        run: python -m py_compile ublcheck.py serve.py
 
-      - name: Run test suite
+      # The browser<->CLI parity test needs Node + @xmldom/xmldom; without it
+      # that one test self-skips (suite still passes). Install so it runs here.
+      - name: Set up Node (for browser/CLI parity test)
+        if: matrix.python-version == '3.12'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install xmldom (for parity test)
+        if: matrix.python-version == '3.12'
+        run: npm install --no-save @xmldom/xmldom
+
+      - name: Run full test suite (happy path + edge cases)
         run: python -m unittest discover -s tests -v
 
       - name: CLI smoke test

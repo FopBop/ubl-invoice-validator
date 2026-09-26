@@ -156,10 +156,24 @@ A non-zero exit fails the build, so a malformed invoice never reaches an access 
 ```
 $ python3 ublcheck.py tests/valid.xml    # -> valid=true  ; exit 0
 $ python3 ublcheck.py tests/broken.xml   # -> codes BR-03a BR-04a BR-05 BR-06 BR-08a BR-09 PEPPOL-001 ; exit 2
-$ python3 tests/test_validate_batch.py   # -> Ran 11 tests ... OK
+$ python3 -m unittest discover -s tests  # -> Ran 115 tests ... OK
 ```
 
 The `ublcheck.pyz` standalone bundle runs identically to the source script, and `sha256sum -c SHA256SUMS` passes for both release artifacts.
+
+## Tests
+
+The suite is stdlib-only and covers **error handling and edge cases**, not just the
+happy path (115 tests):
+
+| File | What it covers |
+| --- | --- |
+| `tests/test_ublcheck.py` | Core validator: every rule code (`BR-01`…`BR-09`, `PEPPOL-001`, `XML-001/002`), boundary values (VAT-id length 2–12 vs 13, amount tolerance ±0.005, currency case-sensitivity), profile detection, malformed/empty/oversized/entity-bomb XML, namespaces. |
+| `tests/test_cli.py` | CLI exit codes (0/1/2), `--json` shape, missing files, directories, mixed inputs, and the shipped `ublcheck.pyz` bundle. |
+| `tests/test_http_edge.py` | HTTP surface: routing, HEAD, static MIME allow-list, path-traversal protection, security headers, empty/oversized bodies, malformed ZIP/JSON, aggregate counts. |
+| `tests/test_validate_batch.py` | Batch endpoint integration + browser↔CLI rule parity (needs Node + `@xmldom/xmldom`; self-skips otherwise). |
+
+Run everything: `python3 -m unittest discover -s tests -v`
 
 ---
 
@@ -171,11 +185,23 @@ ublcheck.pyz    # zero-install standalone bundle of the above
 serve.py        # zero-dependency HTTP surface + static file server
 index.html      # browser validator (client-side, no upload)
 golive/         # commercial model + hosted-pricing page (/golive/)
-tests/          # valid.xml, broken.xml, batch CLI tests
+tests/          # 115-test suite: unit, CLI, HTTP edge cases + fixtures
 INSTALL.md      # install & run instructions
 RUNBOOK.md      # operator/deployment notes
 SET_SITE_URL.sh # set the real site URL in canonical/OG/sitemap before go-live
 ```
+
+## Site & discoverability
+
+The browser tool ships with search- and answer-engine readiness: a descriptive
+`<title>`/meta description, Open Graph and Twitter card tags with a 1200×630 share
+image, JSON-LD (`SoftwareApplication` + `FAQPage`, plus `Product` + `BreadcrumbList`
+on the pricing page), `robots.txt` with explicit GEO/answer-engine allowances, a
+`sitemap.xml`, and a web app manifest. The landing page leads with a **three-step
+outcome band** (drop in → get rule codes → fix) before the tool, and a branded
+`404.html` carries the same metadata plus quick links back into the site. Before
+go-live, run `./SET_SITE_URL.sh https://your-domain.tld` once to point canonical,
+Open Graph, Twitter, `robots.txt` and `sitemap.xml` at the real origin.
 
 ## Reporting problems
 

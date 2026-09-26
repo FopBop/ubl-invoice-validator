@@ -7,6 +7,8 @@ Run:  python3 tests/test_validate_batch.py
 """
 import io
 import json
+import re
+import subprocess
 import os
 import sys
 import threading

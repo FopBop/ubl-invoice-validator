@@ -33,7 +33,7 @@ if [ "$NEW" = "$PLACEHOLDER" ]; then
   exit 2
 fi
 
-FILES=(index.html golive/index.html robots.txt sitemap.xml)
+FILES=(index.html golive/index.html 404.html robots.txt sitemap.xml)
 
 echo "Replacing '$PLACEHOLDER' -> '$NEW'"
 for f in "${FILES[@]}"; do
