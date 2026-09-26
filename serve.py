@@ -9,9 +9,11 @@ Endpoints:
 
 Stdlib only. No external calls. Runs on $0.
 """
+import io
 import json
 import os
 import sys
+import zipfile
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -45,9 +47,17 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(404, {"error": "index.html not found"})
         if self.path == "/health":
             return self._send(200, {"ok": True})
-        return self._send(404, {"error": "not found", "paths": ["/", "/health", "POST /validate"]})
+        return self._send(404, {"error": "not found", "paths": ["/", "/health", "POST /validate", "POST /validate-batch"]})
 
     def do_POST(self):
+        if self.path == "/validate-batch":
+            try:
+                n = int(self.headers.get("Content-Length", "0"))
+            except ValueError:
+                return self._send(400, {"error": "bad Content-Length"})
+            if n <= 0 or n > MAX_BODY:
+                return self._send(413, {"error": "body empty or exceeds 5MB"})
+            return self._validate_batch(self.rfile.read(n))
         if self.path != "/validate":
             return self._send(404, {"error": "not found", "hint": "POST /validate"})
         try:
@@ -71,6 +81,57 @@ class Handler(BaseHTTPRequestHandler):
             "valid": r["valid"],
             "codes": codes,
             "errors": r["errors"],
+        })
+
+
+    # ---- batch validation (Pro tier: "bulk validation of an archive") ----
+    MAX_ENTRIES = 200
+
+    def _validate_batch(self, raw):
+        """raw: ZIP archive of invoice XML files. Returns aggregate + per-file reports."""
+        try:
+            zf = zipfile.ZipFile(io.BytesIO(raw))
+        except zipfile.BadZipFile:
+            return self._send(400, {"error": "body is not a valid ZIP archive"})
+        names = [n for n in zf.namelist()
+                 if not n.endswith("/") and not n.startswith("__MACOSX")]
+        if len(names) > self.MAX_ENTRIES:
+            return self._send(413, {"error": "too many entries: %d (max %d)" % (len(names), self.MAX_ENTRIES)})
+        if not names:
+            return self._send(413, {"error": "archive contains no files"})
+
+        results = []
+        by_code = {}
+        valid_count = 0
+        for n in names:
+            data = zf.read(n)
+            if len(data) > MAX_BODY:
+                results.append({"name": n, "valid": False,
+                                "errors": [{"code": "BATCH-001", "path": "/",
+                                            "fix": "entry exceeds 5MB cap"}]})
+                by_code["BATCH-001"] = by_code.get("BATCH-001", 0) + 1
+                continue
+            xml = data.decode("utf-8", errors="replace")
+            try:
+                r = validate(xml)
+            except Exception as e:
+                r = {"valid": False, "profile": "unknown",
+                     "errors": [{"code": "BATCH-500", "path": "/",
+                                 "fix": "validator crashed: %s" % e}]}
+            codes = sorted({e["code"] for e in r["errors"]})
+            for c in codes:
+                by_code[c] = by_code.get(c, 0) + 1
+            if r["valid"]:
+                valid_count += 1
+            results.append({"name": n, "valid": r["valid"],
+                            "profile": r["profile"], "codes": codes,
+                            "errors": r["errors"]})
+        return self._send(200, {
+            "total": len(results),
+            "valid": valid_count,
+            "invalid": len(results) - valid_count,
+            "by_code": dict(sorted(by_code.items())),
+            "results": results,
         })
 
     def log_message(self, fmt, *args):

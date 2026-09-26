@@ -70,21 +70,45 @@ PORT=8080 python3 serve.py
 - `GET /`          → serves `index.html`
 - `GET /health`    → `{"ok": true}`
 - `POST /validate` → body = invoice XML; returns `{profile, valid, codes, errors}`
+- `POST /validate-batch` → body = a ZIP archive of invoice XML files; returns an
+  aggregate report plus a per-file report (Pro-tier "bulk validation of an archive")
 
 ```bash
 curl -s -X POST --data-binary @invoice.xml http://localhost:8080/validate
+curl -s -X POST --data-binary @invoices.zip http://localhost:8080/validate-batch
 ```
 
-**Status:** the server code is written and imports the verified `validate()`. Start it
-and confirm `curl` returns the same codes as the CLI table above before calling this
-surface verified.
+`POST /validate-batch` response shape:
+
+```json
+{
+  "total": 3, "valid": 1, "invalid": 2,
+  "by_code": { "BR-03a": 1, "XML-001": 1, "…": 1 },
+  "results": [ { "name": "a.xml", "valid": true, "profile": "en16931",
+                 "codes": [], "errors": [] }, … ]
+}
+```
+
+Limits: ≤ 5 MB body, ≤ 200 archive entries. Non-invoice files (e.g. `notes.txt`)
+are reported as invalid with an `XML-002` error rather than crashing the batch.
+Directories and `__MACOSX` entries are skipped.
+
+**Verified this cycle:** a 3-entry ZIP (`valid.xml`, `broken.xml`, `notes.txt`)
+returned `total=3, valid=1, invalid=2` with correct `by_code`, and single-file
+`POST /validate` still returned the same result as before the change
+(backward-compatible).
+
+**Status:** VERIFIED this cycle. `serve.py` imports the verified `validate()`; both
+`POST /validate` and `POST /validate-batch` were started locally and returned the
+expected codes/aggregates (see the batch note above).
 
 ---
 
 ## What this is NOT
 
 - Not a full EN 16931 validator — a documented **subset** of rules.
-- Not monetized — no buyer, no paid rail. It is a working, free tool.
+- Free core; a Pro tier (hosted endpoint + bulk validation + support) is defined
+  in `golive/1_commercial_model.md`. No paying customer yet.
 - Not a swarm deliverable — do not spawn workers to re-derive these three commands.
 
 ## Rule codes seen in the bundled fixtures
