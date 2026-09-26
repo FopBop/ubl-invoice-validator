@@ -64,7 +64,11 @@ a descriptive `<title>`/meta description, Open Graph and Twitter card tags with 
 manifest. The hosted pricing page lives at `golive/index.html` (`/golive/`).
 
 `serve.py` serves these assets for `GET`/`HEAD` alongside the validator UI, so a
-single process is enough to run the whole site.
+single process is enough to run the whole site. Every response carries production
+security headers (a strict Content-Security-Policy, `X-Frame-Options: DENY`,
+`Referrer-Policy`, `Permissions-Policy`, and cross-origin isolation); the pages add
+light/dark `theme-color`, richer Open Graph/Twitter tags, a keyboard skip-link, and
+`WebSite`/`BreadcrumbList` structured data.
 
 ## Scope
 

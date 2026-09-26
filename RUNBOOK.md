@@ -135,6 +135,34 @@ expected codes/aggregates (see the batch note above).
 
 ---
 
+## Presentation & hardening (commercial-quality pass)
+
+Every `GET`/`HEAD` response now carries a baseline of production security headers,
+emitted centrally by `Handler._security_headers()`:
+
+- `Content-Security-Policy` — `default-src 'self'` with `object-src 'none'`,
+  `frame-ancestors 'none'`, `base-uri 'self'`, `img-src 'self' data:` (the inline
+  favicon), and `'unsafe-inline'` for style/script because the pages are
+  deliberately self-contained (no external requests).
+- `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`,
+  `Referrer-Policy: strict-origin-when-cross-origin`,
+  `Permissions-Policy` (geo/mic/camera/payment disabled),
+  `Cross-Origin-Opener-Policy` and `Cross-Origin-Resource-Policy`.
+
+The landing page and pricing page also ship viewability/meta polish: `color-scheme`,
+light/dark `theme-color`, `og:image:type` + `og:image:secure_url`, `twitter:image:alt`,
+`application-name`, `apple-mobile-web-app-*`, `format-detection`, a keyboard
+**skip-link**, a `WebSite` JSON-LD node (and a `BreadcrumbList` on `/golive/`), and a
+tidy `sitemap.xml` (page URLs only). All pages parse with balanced tags and valid
+JSON-LD.
+
+**Verified this cycle:** started `serve.py` locally; `HEAD /` returns every header
+above; `/`, `/golive/`, `/robots.txt`, `/sitemap.xml`, `/site.webmanifest` all 200;
+unknown path with `Accept: text/html` returns the branded `404`; the full
+`tests/test_validate_batch.py` suite (11 assertions) still passes.
+
+---
+
 ## What this is NOT
 
 - Not a full EN 16931 validator — a documented **subset** of rules.

@@ -58,6 +58,34 @@ class Handler(BaseHTTPRequestHandler):
     }
     CACHEABLE = (".svg", ".png", ".ico", ".css", ".js", ".webmanifest")
 
+
+    # ---- security headers (commercial-grade defaults) ----
+    # The pages are fully self-contained (inline <style>/<script>/JSON-LD), so the
+    # CSP permits inline style/script but locks down everything else: no remote
+    # script, no framing, no object/embed. Same-origin only for connections.
+    SECURITY_HEADERS = (
+        ("X-Frame-Options", "DENY"),
+        ("X-Content-Type-Options", "nosniff"),
+        ("Referrer-Policy", "strict-origin-when-cross-origin"),
+        ("Permissions-Policy", "geolocation=(), microphone=(), camera=(), payment=()"),
+        ("Cross-Origin-Opener-Policy", "same-origin"),
+        ("Cross-Origin-Resource-Policy", "same-origin"),
+        ("Content-Security-Policy",
+         "default-src 'self'; "
+         "base-uri 'self'; "
+         "object-src 'none'; "
+         "img-src 'self' data:; "
+         "style-src 'self' 'unsafe-inline'; "
+         "script-src 'self' 'unsafe-inline'; "
+         "connect-src 'self'; "
+         "form-action 'self'; "
+         "frame-ancestors 'none'"),
+    )
+
+    def _security_headers(self):
+        for k, v in self.SECURITY_HEADERS:
+            self.send_header(k, v)
+
     def _send(self, code, body, ctype="application/json; charset=utf-8", head=False):
         if isinstance(body, (dict, list)):
             body = json.dumps(body, indent=2).encode("utf-8")
@@ -67,7 +95,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("X-Content-Type-Options", "nosniff")
+        self._security_headers()
         self.end_headers()
         if not head:
             self.wfile.write(body)
@@ -102,7 +130,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(data)))
         self.send_header("Cache-Control", cache)
-        self.send_header("X-Content-Type-Options", "nosniff")
+        self._security_headers()
         self.end_headers()
         if not head:
             self.wfile.write(data)

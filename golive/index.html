@@ -7,7 +7,11 @@
 <meta name="description" content="Hosted Peppol / EN 16931 invoice validation for teams sending e-invoices programmatically. Free open-core CLI, Pro hosted API from $29/mo, Enterprise on-prem from €2,400/yr. No upload required on the free tier.">
 <meta name="keywords" content="Peppol BIS validation API, EN 16931 validation service, e-invoicing validation pricing, bulk invoice validation, XRechnung validator, ERP e-invoice integration">
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
-<meta name="theme-color" content="#0b0f17">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="application-name" content="EN 16931 Invoice Validator">
+<meta name="format-detection" content="telephone=no">
 <link rel="canonical" href="https://invoice-validator.example/golive/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EN 16931 Invoice Validator">
@@ -15,6 +19,7 @@
 <meta property="og:description" content="Hosted validation endpoint, bulk archive checks, and on-prem deployment for teams that send e-invoices programmatically.">
 <meta property="og:url" content="https://invoice-validator.example/golive/">
 <meta property="og:image" content="https://invoice-validator.example/og-image.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="EN 16931 / Peppol validation — free open core, Pro hosted API, Enterprise on-prem">
@@ -46,6 +51,19 @@
         {"@type": "Question","name": "Does the free tier upload my invoices?","acceptedAnswer": {"@type": "Answer","text": "No. The free browser validator runs entirely client-side. Nothing is uploaded. The hosted plans are for teams that prefer a server-side endpoint."}},
         {"@type": "Question","name": "Is this a certification?","acceptedAnswer": {"@type": "Answer","text": "No. It is a linter for a documented subset of EN 16931 and Peppol BIS rules. It reduces common rejection causes but does not guarantee acceptance by every access point."}}
       ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem","position": 1,"name": "Validator","item": "https://invoice-validator.example/"},
+        {"@type": "ListItem","position": 2,"name": "Pricing","item": "https://invoice-validator.example/golive/"}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "name": "EN 16931 Invoice Validator",
+      "url": "https://invoice-validator.example/",
+      "inLanguage": "en"
     }
   ]
 }
@@ -131,10 +149,13 @@
   footer{margin-top:20px;padding:26px 0;border-top:1px solid var(--line);color:var(--mut);font-size:13.5px}
   footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
   footer .links{display:flex;gap:18px;flex-wrap:wrap}
+  .skiplink{position:absolute;left:-9999px;top:0;background:var(--acc);color:var(--acc-ink);padding:10px 16px;border-radius:0 0 10px 0;font-weight:700;z-index:50;text-decoration:none}
+  .skiplink:focus{left:0}
   .note{font-size:12.5px;color:var(--mut2);margin-top:10px}
 </style>
 </head>
 <body>
+<a class="skiplink" href="#pricing">Skip to pricing</a>
 <header class="sitehead">
   <div class="wrap">
     <a class="brand" href="../index.html">
