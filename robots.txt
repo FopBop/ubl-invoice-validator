@@ -18,4 +18,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://invoice-validator.example/sitemap.xml
+Sitemap: https://fopbop.github.io/ubl-invoice-validator/sitemap.xml
