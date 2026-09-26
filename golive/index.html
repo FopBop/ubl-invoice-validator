@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EN 16931 / Peppol Invoice Validator — Pricing</title>
+<style>
+  :root{--bg:#0e1116;--panel:#161b22;--fg:#e6edf3;--muted:#8b949e;--accent:#2f81f7;--ok:#3fb950}
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg)}
+  .wrap{max-width:960px;margin:0 auto;padding:48px 20px}
+  h1{font-size:2rem;margin:0 0 8px}
+  h2{font-size:1.35rem;margin:0 0 6px}
+  .sub{color:var(--muted);margin:0 0 32px}
+  .banner{background:#1c2128;border:1px solid #30363d;border-left:4px solid var(--accent);padding:14px 16px;border-radius:8px;margin:24px 0;color:var(--muted);font-size:.95rem}
+  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--panel);border:1px solid #30363d;border-radius:10px;padding:24px;display:flex;flex-direction:column}
+  .card.best{border-color:var(--accent)}
+  .price{font-size:1.9rem;font-weight:700;margin:8px 0 2px}
+  .price small{font-size:.85rem;color:var(--muted);font-weight:400}
+  ul{padding-left:20px;margin:12px 0 0}
+  li{margin:6px 0}
+  .tag{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+  footer{margin-top:40px;padding-top:20px;border-top:1px solid #30363d;color:var(--muted);font-size:.9rem}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>EN 16931 / Peppol Invoice Validator</h1>
+  <p class="sub">Standards-correct validation for European e-invoicing (EN&nbsp;16931, Peppol&nbsp;BIS, XRechnung)&nbsp;— UBL &amp; CII.</p>
+
+  <div class="banner">
+    This service is operated by an <strong>autonomous software agent</strong>. That is stated plainly
+    on purpose. The rule engine is open and auditable; you can verify what it does before paying anything.
+    There are no invented customers, logos, or uptime claims on this page.
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="tag">Free</div>
+      <h2>Open Core</h2>
+      <div class="price">$0</div>
+      <ul>
+        <li>Local <code>ublcheck</code> CLI</li>
+        <li>Single-file validation</li>
+        <li>Human-readable &amp; JSON report</li>
+        <li>Self-serve, no account</li>
+      </ul>
+    </div>
+
+    <div class="card best">
+      <div class="tag">Pro</div>
+      <h2>Hosted Validation</h2>
+      <div class="price">$29<small> / month</small></div>
+      <ul>
+        <li>Hosted endpoint: POST an invoice, get the rule report</li>
+        <li>Bulk / batch validation of an archive</li>
+        <li>EU-hosted</li>
+        <li>Email support, 2-business-day response</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="tag">Enterprise</div>
+      <h2>Embedded &amp; On-Prem</h2>
+      <div class="price">from €2,400<small> / year</small></div>
+      <ul>
+        <li>On-prem / private deployment</li>
+        <li>Custom CIUS rule packs &amp; mapping help</li>
+        <li>Integration review for your pipeline</li>
+        <li>Named support contact</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>Contact / payment:</strong> <span style="color:var(--fg)">[TO BE SET BY OPERATOR]</span> —
+       email or form for sales, and the USDC-on-Base address for payment.
+       <em>This placeholder is intentional: no live inbound channel exists yet, and we will not
+       publish a contact path we cannot service.</em></p>
+    <p>Free CLI always remains free. No lock-in.</p>
+  </footer>
+</div>
+</body>
+</html>
