@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>EN 16931 &amp; Peppol Invoice Validator — Free, Private, In-Browser</title>
-<meta name="description" content="Validate UBL &amp; CII e-invoices against EN 16931 and Peppol BIS 3.0 business rules — free, no signup, no upload. Your invoice never leaves your browser. Catches the missing or malformed fields that get invoices rejected by access points.">
-<meta name="keywords" content="EN 16931 validator, Peppol BIS 3.0 validator, UBL invoice validator, CII CrossIndustryInvoice, XRechnung validation, e-invoice validator, EU e-invoicing, Peppol access point rejection">
+<title>Pricing — EN 16931 &amp; Peppol Invoice Validator (Free / Pro / Enterprise)</title>
+<meta name="description" content="Simple, honest pricing for the EN 16931 / Peppol BIS 3.0 invoice validator. The core CLI and browser checker are free and MIT-licensed; Pro ($29/mo) adds a hosted EU validation endpoint and bulk runs; Enterprise adds on-prem deployment and custom CIUS rule packs.">
+<meta name="keywords" content="EN 16931 validator pricing, Peppol BIS 3.0 validator price, e-invoice validation API cost, XRechnung validator plans, UBL validator pricing, hosted e-invoice validation">
 <meta name="author" content="EN 16931 Validator (open core)">
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <meta name="color-scheme" content="dark light">
@@ -13,70 +13,67 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="application-name" content="EN 16931 Invoice Validator">
 <meta name="apple-mobile-web-app-title" content="Invoice Validator">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="format-detection" content="telephone=no">
-<link rel="canonical" href="https://invoice-validator.example/">
+<link rel="canonical" href="https://invoice-validator.example/golive/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EN 16931 Invoice Validator">
-<meta property="og:title" content="EN 16931 &amp; Peppol Invoice Validator — free, private, in-browser">
-<meta property="og:description" content="Catch the missing or malformed fields that get EU e-invoices rejected — before you send. Runs entirely in your browser; nothing is uploaded.">
-<meta property="og:url" content="https://invoice-validator.example/">
+<meta property="og:title" content="Pricing — EN 16931 &amp; Peppol Invoice Validator">
+<meta property="og:description" content="Free MIT core. Pro $29/mo for a hosted EU validation endpoint and bulk runs. Enterprise for on-prem deployment and custom CIUS rule packs.">
+<meta property="og:url" content="https://invoice-validator.example/golive/">
 <meta property="og:image" content="https://invoice-validator.example/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:secure_url" content="https://invoice-validator.example/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="EN 16931 / Peppol invoice validator — free, private, in-browser">
+<meta property="og:image:alt" content="EN 16931 / Peppol invoice validator pricing — free, Pro, Enterprise">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="EN 16931 &amp; Peppol Invoice Validator — free &amp; private">
-<meta name="twitter:description" content="Validate UBL/CII e-invoices against EN 16931 / Peppol BIS 3.0 rules in your browser. No upload, no signup.">
+<meta name="twitter:title" content="Pricing — EN 16931 &amp; Peppol Invoice Validator">
+<meta name="twitter:description" content="Free MIT core; Pro $29/mo hosted endpoint; Enterprise on-prem. Honest tiers, no lock-in.">
 <meta name="twitter:image" content="https://invoice-validator.example/og-image.png">
-<meta name="twitter:image:alt" content="EN 16931 / Peppol invoice validator — free and in-browser">
+<meta name="twitter:image:alt" content="EN 16931 / Peppol invoice validator pricing">
 <meta name="geo.region" content="EU">
 <meta name="category" content="E-invoicing compliance / developer tool">
-<meta name="generator" content="EN 16931 Validator (open core)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0f17'/%3E%3Cpath d='M13 18l2.2 2.2L19 15.5' fill='none' stroke='%2343d17f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="manifest" href="site.webmanifest">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="manifest" href="../site.webmanifest">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      "name": "EN 16931 Validator",
-      "url": "https://invoice-validator.example/",
-      "description": "Open-core, privacy-first validator for EU e-invoices (EN 16931 / Peppol BIS 3.0).",
-      "sameAs": []
-    },
-    {
-      "@type": "WebSite",
-      "name": "EN 16931 Invoice Validator",
-      "url": "https://invoice-validator.example/",
+      "@type": "WebPage",
+      "name": "Pricing — EN 16931 & Peppol Invoice Validator",
+      "url": "https://invoice-validator.example/golive/",
       "inLanguage": "en",
-      "description": "Free, private, in-browser validator for EN 16931 and Peppol BIS 3.0 e-invoices."
+      "description": "Pricing for the EN 16931 / Peppol BIS 3.0 e-invoice validator: a free MIT core, a $29/month hosted Pro tier, and an on-prem Enterprise tier."
     },
     {
-      "@type": "SoftwareApplication",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem","position": 1,"name": "Validator","item": "https://invoice-validator.example/"},
+        {"@type": "ListItem","position": 2,"name": "Pricing","item": "https://invoice-validator.example/golive/"}
+      ]
+    },
+    {
+      "@type": "Product",
       "name": "EN 16931 / Peppol Invoice Validator",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Any (web browser, Python 3)",
-      "description": "Free, private validator for UBL and CII e-invoices against EN 16931 and Peppol BIS 3.0 business rules. Runs fully in the browser; invoices are never uploaded.",
-      "softwareVersion": "1.0",
-      "featureList": ["EN 16931 business rule checks","Peppol BIS 3.0 profile checks","UBL Invoice and CII CrossIndustryInvoice support","Runs 100% client-side (no upload)","Machine-readable rule codes"],
-      "offers": {"@type": "Offer","price": "0","priceCurrency": "EUR","description": "Free open-core browser and CLI validator"},
-      "license": "https://opensource.org/licenses/MIT"
+      "description": "Validator for UBL and CII e-invoices against EN 16931 and Peppol BIS 3.0 business rules. Free MIT core; hosted and on-prem tiers for teams that would rather not run it themselves.",
+      "category": "BusinessApplication",
+      "brand": {"@type": "Brand","name": "EN 16931 Validator"},
+      "offers": [
+        {"@type": "Offer","name": "Free","price": "0","priceCurrency": "USD","description": "MIT-licensed CLI, library and in-browser validator. No account.","url": "https://invoice-validator.example/"},
+        {"@type": "Offer","name": "Pro","price": "29","priceCurrency": "USD","description": "EU-hosted validation endpoint, bulk runs, email support (2 business days).","url": "https://invoice-validator.example/golive/"},
+        {"@type": "Offer","name": "Enterprise","price": "2400","priceCurrency": "EUR","description": "On-prem deployment, custom CIUS rule packs, integration review, named support contact.","url": "https://invoice-validator.example/golive/"}
+      ]
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question","name": "What is EN 16931?","acceptedAnswer": {"@type": "Answer","text": "EN 16931 is the European standard that defines the semantic data model for a core electronic invoice. It specifies which fields (business terms) an e-invoice must contain and the business rules they must satisfy, so invoices are interoperable across EU countries, Peppol, and national CIUS profiles like XRechnung."}},
-        {"@type": "Question","name": "Does my invoice get uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. The browser validator runs entirely in your browser using JavaScript and never sends your invoice anywhere. Your document stays on your device."}},
-        {"@type": "Question","name": "Which formats can it validate?","acceptedAnswer": {"@type": "Answer","text": "It validates UBL 2.1 Invoice XML and UN/CEFACT CII CrossIndustryInvoice XML, checking them against a documented subset of EN 16931 business rules and Peppol BIS Billing 3.0 profile rules."}},
-        {"@type": "Question","name": "Is passing this validation a guarantee my invoice will be accepted?","acceptedAnswer": {"@type": "Answer","text": "No. This is a linter for a documented subset of rules, not a certification body. Passing it reduces the most common rejection causes but does not guarantee acceptance by every access point."}}
+        {"@type": "Question","name": "Is the free version really free, or is it a trial?","acceptedAnswer": {"@type": "Answer","text": "Really free, and MIT-licensed. There is no time limit and no signup. The free CLI, library, and browser checker will always work."}},
+        {"@type": "Question","name": "What am I paying for in the Pro plan if the engine is the same?","acceptedAnswer": {"@type": "Answer","text": "You are paying for operation: an EU-hosted validation endpoint you do not run yourself, batch handling, and rule updates maintained for you. If you are happy running the CLI yourself, stay on the free tier."}},
+        {"@type": "Question","name": "Does passing validation guarantee my invoice is accepted?","acceptedAnswer": {"@type": "Answer","text": "No. The validator is a linter for a documented subset of EN 16931 and Peppol BIS rules, not a certification body. You are paying for integration and accountability, not a guarantee of universal acceptance."}},
+        {"@type": "Question","name": "Can I self-host the Enterprise tier?","acceptedAnswer": {"@type": "Answer","text": "Yes. Enterprise is on-prem or private deployment, with custom CIUS rule packs and an integration review, priced per integration rather than per seat."}}
       ]
     }
   ]
@@ -206,7 +203,7 @@
 </style>
 </head>
 <body>
-<a class="skiplink" href="#validator">Skip to the validator</a>
+<a class="skiplink" href="#pricing">Skip to pricing</a>
 <header class="sitehead">
   <div class="wrap">
     <div class="brand">
@@ -214,417 +211,143 @@
       <span>EN&nbsp;16931&nbsp;Validator</span>
     </div>
     <nav class="navlinks" aria-label="Primary">
-      <a href="#validator">Validate</a>
-      <a href="#how">Rules checked</a>
-      <a href="#faq">FAQ</a>
-      <a href="golive/index.html">Pricing</a>
+      <a href="../index.html">Validate</a>
+      <a href="../index.html#how">Rules checked</a>
+      <a href="../index.html#faq">FAQ</a>
+      <a href="index.html" aria-current="page">Pricing</a>
     </nav>
   </div>
 </header>
 
 <header class="hero wrap">
-  <span class="eyebrow"><span class="dot"></span> Free · No signup · Nothing leaves your browser</span>
-  <h1>Catch the invoice error <span class="hl">before the access point rejects it</span>.</h1>
+  <span class="eyebrow"><span class="dot"></span> Free core · Pay only for hosting &amp; accountability</span>
+  <h1>Start free. <span class="hl">Pay only when you stop running it yourself.</span></h1>
   <p class="lede">
-    A rejected EU e-invoice stalls a payment. This validator checks a UBL or CII invoice against
-    <strong>EN&nbsp;16931</strong> and <strong>Peppol&nbsp;BIS&nbsp;3.0</strong> business rules and tells you
-    exactly which field failed and how to fix it — in seconds, with no upload and no account.
+    The validator engine is <strong>free and open source (MIT)</strong> — the CLI, the library, and the
+    in-browser checker. You pay for the things worth paying for honestly: a hosted endpoint you don't
+    operate, bulk runs, and a named person accountable for compliance. No lock-in; the free tier always works.
   </p>
   <div class="cta">
-    <a class="btn btn-primary" href="#validator">Validate an invoice &rarr;</a>
-    <a class="btn btn-ghost" href="#how">See the rules it checks</a>
+    <a class="btn btn-primary" href="../index.html#validator">Use the free validator &rarr;</a>
+    <a class="btn btn-ghost" href="#tiers">Compare plans</a>
   </div>
   <div class="trust">
-    <span><b>100%</b> client-side</span>
-    <span><b>0</b> invoices uploaded</span>
-    <span><b>Machine-readable</b> rule codes</span>
     <span><b>MIT</b> open core</span>
+    <span><b>0</b> invoices uploaded</span>
+    <span><b>EU</b>-hosted Pro</span>
+    <span><b>No</b> lock-in, ever</span>
   </div>
 </header>
 
 <main class="wrap" id="main">
-  <section id="start" style="padding-top:14px">
+  <section id="pricing">
     <div class="bandhead">
-      <h2>From rejected to accepted, in three steps</h2>
-      <span class="muted">No account, no upload, no install.</span>
+      <h2>Plans</h2>
+      <span class="muted">Honest tiers. Nothing you can't verify yourself.</span>
     </div>
-    <div class="steps">
-      <div class="step">
-        <span class="n" aria-hidden="true">1</span>
-        <h3>Drop in your invoice</h3>
-        <p>Paste the XML or drop the <code>.xml</code> file. It stays on your device &mdash; nothing is uploaded.</p>
+    <div class="grid3" style="margin-top:20px;align-items:stretch">
+      <div class="feature" style="display:flex;flex-direction:column">
+        <h3 style="font-size:17px">Free</h3>
+        <p style="font-size:30px;font-weight:800;color:var(--fg);margin:6px 0 2px">$0</p>
+        <p class="muted" style="font-size:13px;margin:0 0 12px">forever · no account</p>
+        <ul class="plan" style="list-style:none;padding:0;margin:0 0 16px;color:var(--mut);font-size:13.5px;line-height:1.5">
+          <li><code>ublcheck</code> CLI, run locally on your machine</li>
+          <li>Single-file validation, human-readable + JSON output</li>
+          <li>In-browser checker (nothing uploaded)</li>
+          <li>MIT-licensed — read &amp; fork the engine</li>
+        </ul>
+        <a class="btn btn-ghost" style="margin-top:auto;justify-content:center" href="../index.html#validator">Validate in your browser</a>
       </div>
-      <div class="step">
-        <span class="n" aria-hidden="true">2</span>
-        <h3>Get the exact rule codes</h3>
-        <p>See which business rules failed (e.g. <code>BR-03a</code>) and where, mapped to the BT terms you already know.</p>
+
+      <div class="feature" style="display:flex;flex-direction:column;border-color:var(--acc);box-shadow:0 0 0 1px var(--acc), var(--shadow)">
+        <div style="display:flex;align-items:center;gap:8px">
+          <h3 style="font-size:17px;margin:0">Pro</h3>
+          <span class="badge" style="color:var(--acc-hi);background:rgba(79,143,255,.12);border-color:rgba(79,143,255,.35)">For senders</span>
+        </div>
+        <p style="font-size:30px;font-weight:800;color:var(--fg);margin:6px 0 2px">$29<span style="font-size:15px;font-weight:600;color:var(--mut)">/month</span></p>
+        <p class="muted" style="font-size:13px;margin:0 0 12px">for teams sending invoices programmatically</p>
+        <ul class="plan" style="list-style:none;padding:0;margin:0 0 16px;color:var(--mut);font-size:13.5px;line-height:1.5">
+          <li>Hosted validation endpoint (<code>POST /validate</code>)</li>
+          <li>Bulk validation of a batch / archive</li>
+          <li>EU-hosted — no server for you to run or pin</li>
+          <li>Rule updates tracked for you</li>
+          <li>Email support, 2-business-day response</li>
+        </ul>
+        <a class="btn btn-primary" style="margin-top:auto;justify-content:center" href="mailto:hello@example.com?subject=Pro%20plan%20enquiry">Request Pro access</a>
       </div>
-      <div class="step">
-        <span class="n" aria-hidden="true">3</span>
-        <h3>Fix it and re-run</h3>
-        <p>Each finding comes with a one-line fix. Export the JSON report and hand it to your developer or ERP.</p>
+
+      <div class="feature" style="display:flex;flex-direction:column">
+        <h3 style="font-size:17px">Enterprise</h3>
+        <p style="font-size:30px;font-weight:800;color:var(--fg);margin:6px 0 2px">from &euro;2,400<span style="font-size:15px;font-weight:600;color:var(--mut)">/year</span></p>
+        <p class="muted" style="font-size:13px;margin:0 0 12px">for ERPs &amp; accounting vendors</p>
+        <ul class="plan" style="list-style:none;padding:0;margin:0 0 16px;color:var(--mut);font-size:13.5px;line-height:1.5">
+          <li>On-prem / private deployment</li>
+          <li>Custom CIUS rule packs &amp; mapping help</li>
+          <li>Integration review for your pipeline</li>
+          <li>Named support contact</li>
+        </ul>
+        <a class="btn btn-ghost" style="margin-top:auto;justify-content:center" href="mailto:hello@example.com?subject=Enterprise%20enquiry">Talk to us</a>
       </div>
     </div>
+    <p class="muted" style="font-size:13px;margin-top:16px;max-width:70ch">
+      <strong>Why Pro is worth $29:</strong> priced against the cost of <em>not</em> running it — a single
+      rejected invoice batch usually costs more than $29 in re-issued paperwork and chasing a payment.
+      Enterprise is priced per integration, not per seat: the value is the integration, once.
+    </p>
   </section>
 
-  <section id="validator">
-    <div class="card">
-      <div class="toolhead">
-        <h2>Invoice validator</h2>
-        <span class="badge">Runs locally</span>
-        <span class="kbdhint" style="margin-left:auto">Paste · drop a file · or load a sample</span>
-      </div>
-      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Drop an XML e-invoice here or press Enter to choose a file">
-        Drop an <code>.xml</code> e-invoice here — or <u>choose a file</u>. Nothing is uploaded.
-      </div>
-      <input type="file" id="file" accept=".xml,text/xml,application/xml" hidden>
-      <label class="sr-only" for="xml">Invoice XML</label>
-      <textarea id="xml" spellcheck="false" autocomplete="off" autocapitalize="off"
-        placeholder="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;Invoice xmlns=&quot;urn:oasis:names:specification:ubl:schema:xsd:Invoice-2&quot; ...&gt;&#10;  ...&#10;&lt;/Invoice&gt;"></textarea>
-      <div class="row">
-        <button class="primary" id="validate">Validate invoice</button>
-        <button class="ghost" id="loadSample">Load valid sample</button>
-        <button class="ghost" id="loadBroken">Load broken sample</button>
-        <button class="ghost" id="pick">Choose file…</button>
-        <span class="spacer"></span>
-        <span class="kbdhint">Press <kbd>Ctrl</kbd>/<kbd>&#8984;</kbd> + <kbd>Enter</kbd> to validate</span>
-      </div>
-    </div>
-    <div class="card" id="result" style="display:none" aria-live="polite"></div>
-  </section>
-
-  <section id="how">
-    <h2>What it checks — and what it won't</h2>
-    <p class="muted" style="max-width:70ch;margin-top:0">
-      A focused subset of the rules that cause most real-world access-point rejections. Each violation
-      is reported as a rule code (e.g. <code>BR-03a</code>), the location, and a one-line fix.
-    </p>
-    <div class="grid3">
-      <div class="feature">
-        <div class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f8fff" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"/></svg></div>
-        <h3>EN 16931 core rules</h3>
-        <p>Mandatory business terms and the <code>BR-01…BR-09</code> presence/format checks — invoice number, issue date (ISO&nbsp;8601), currency (ISO&nbsp;4217), seller identity, and totals that reconcile.</p>
-      </div>
-      <div class="feature">
-        <div class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f8fff" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg></div>
-        <h3>Peppol BIS 3.0 profile</h3>
-        <p>Detects the <code>CustomizationID</code> and applies profile rules — for example the seller contact e-mail required by Peppol BIS (<code>PEPPOL-001</code>).</p>
-      </div>
-      <div class="feature">
-        <div class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f8fff" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg></div>
-        <h3>Totals reconciliation</h3>
-        <p>Catches the silent killer: <code>TaxExclusiveAmount</code> that doesn't equal the sum of line amounts (<code>BR-CO-13</code>) — a mismatch that gets the invoice bounced.</p>
-      </div>
-    </div>
-    <p class="muted" style="font-size:13.5px;margin-top:16px">
-      <strong>Honest scope:</strong> this is a linter for a documented subset, not a certification body.
-      Passing it lowers the most common rejection causes but does not guarantee acceptance by every access point.
-    </p>
+  <section id="compare">
+    <h2>What you actually get</h2>
+    <p class="muted" style="max-width:70ch;margin-top:0">The engine is identical across tiers — the same documented subset of EN&nbsp;16931 and Peppol&nbsp;BIS&nbsp;3.0 rules. What changes is <em>who operates it</em> and <em>who is accountable</em>.</p>
+    <table>
+      <thead>
+        <tr><th scope="col">Capability</th><th scope="col">Free</th><th scope="col">Pro</th><th scope="col">Enterprise</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>EN&nbsp;16931 / Peppol BIS&nbsp;3.0 rule engine</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>UBL &amp; CII &amp; XRechnung profiles</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Where it runs</td><td>Your machine / browser</td><td>EU-hosted by us</td><td>Your infrastructure (on-prem)</td></tr>
+        <tr><td>Hosted API (<code>POST /validate</code>)</td><td>&mdash;</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Bulk / archive validation</td><td>Script it yourself</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>Custom CIUS rule packs</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+        <tr><td>Integration review</td><td>&mdash;</td><td>&mdash;</td><td>Yes</td></tr>
+        <tr><td>Support</td><td>Community</td><td>Email, 2 business days</td><td>Named contact</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <section id="faq">
-    <h2>Frequently asked</h2>
+    <h2>Pricing questions</h2>
     <details open>
-      <summary>Does my invoice get uploaded anywhere?</summary>
-      <p>No. Validation runs entirely in your browser in JavaScript. Your XML never leaves your device, and there is no tracking or account.</p>
+      <summary>Is the free version really free, or is it a trial?</summary>
+      <p>Really free, and MIT-licensed. There is no time limit and no signup. The free CLI, library, and browser checker will always work — that is a hard commitment, not a marketing line.</p>
     </details>
     <details>
-      <summary>Which e-invoice formats are supported?</summary>
-      <p>UBL 2.1 <code>Invoice</code> and UN/CEFACT CII <code>CrossIndustryInvoice</code> XML — the formats used by Peppol BIS and XRechnung.</p>
+      <summary>What am I paying for in Pro if the engine is the same?</summary>
+      <p>You are paying for <em>operation</em>: an EU-hosted endpoint you don't run, batch handling, and rule updates maintained for you. If you are happy running the CLI yourself, stay on Free — honestly, stay on Free.</p>
     </details>
     <details>
-      <summary>What is EN&nbsp;16931?</summary>
-      <p>The European standard defining the semantic model and business rules for a core e-invoice. It makes invoices interoperable across the EU, Peppol, and national profiles (CIUS) such as XRechnung.</p>
+      <summary>Does passing validation guarantee my invoice is accepted?</summary>
+      <p>No. This is a linter for a documented subset of rules, not a certification body. You are paying for integration and accountability, not a false promise of universal acceptance.</p>
     </details>
     <details>
-      <summary>Can I run this in CI or on a server?</summary>
-      <p>Yes. The same rule subset ships as a zero-dependency Python CLI (<code>ublcheck.py</code>) and a small HTTP service (<code>POST /validate</code>, plus bulk <code>POST /validate-batch</code>).</p>
+      <summary>Can I self-host Enterprise?</summary>
+      <p>Yes — Enterprise is exactly that: on-prem or private deployment, with custom CIUS rule packs and an integration review, priced per integration rather than per seat.</p>
+    </details>
+    <details>
+      <summary>Do you lock me in?</summary>
+      <p>No. The free engine is yours under MIT. If you leave, your validator keeps working.</p>
     </details>
   </section>
 
   <div class="foot">
-    <span>EN&nbsp;16931 / Peppol BIS&nbsp;3.0 validator — a free, open-core linter. Deterministic; no data leaves your browser.</span>
+    <span>EN&nbsp;16931 / Peppol BIS&nbsp;3.0 validator — free, open-core linter. Deterministic; no data leaves your browser.</span>
     <span class="links">
-      <a href="#how">Scope &amp; rules</a>
-      <a href="#faq">FAQ</a>
-      <a href="golive/index.html">Pricing</a>
+      <a href="../index.html">Home</a>
+      <a href="../index.html#how">Scope &amp; rules</a>
+      <a href="../index.html#faq">FAQ</a>
     </span>
   </div>
 </main>
-<script>
-"use strict";
-/* ---- EN 16931 / Peppol BIS 3.0 rule subset (ported from the stdlib engine).
-   Pure functions, no I/O. Returns {valid, profile, errors:[{code,path,fix_hint}]}. ---- */
-const NS = {
-  UBL:"urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
-  CBC:"urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
-  CAC:"urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
-  CII:"urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100"
-};
-const KNOWN_CURRENCIES = new Set(["EUR","USD","GBP","CHF","SEK","DKK","NOK","PLN"]);
-const VAT_ID_RE  = /^[A-Z]{2}[A-Z0-9]{2,12}$/;
-
-function localName(el){ return el ? (el.localName || el.nodeName.replace(/^.*:/,"")) : null; }
-function cbc(root, name){
-  const els = root.getElementsByTagNameNS(NS.CBC, name);
-  if(!els.length) return null;
-  const t = (els[0].textContent||"").trim();
-  return t === "" ? null : t;
-}
-function cac(root, name){
-  const els = root.getElementsByTagNameNS(NS.CAC, name);
-  return els.length ? els[0] : null;
-}
-function detectProfile(root){
-  const cid = (cbc(root,"CustomizationID")||"").toLowerCase();
-  if(cid.includes("xrechnung")) return "xrechnung";
-  if(cid.includes("peppol")) return "peppol-bis-3";
-  if(cid.includes("factur-x")||cid.includes("zugferd")) return "factur-x";
-  return "en16931";
-}
-function err(code,path,fix_hint){ return {code,path,fix_hint}; }
-
-function validate(xmlText){
-  const errors = [];
-  let doc;
-  try{
-    doc = new DOMParser().parseFromString(xmlText, "application/xml");
-  }catch(e){
-    return {valid:false, profile:"unknown",
-            errors:[err("XML-001","/","Document is not well-formed XML. Fix encoding/escaping before validating.")]};
-  }
-  const perr = doc.getElementsByTagName("parsererror");
-  if(perr.length){
-    return {valid:false, profile:"unknown",
-            errors:[err("XML-001","/","Document is not well-formed XML: "+ (perr[0].textContent||"").slice(0,160))]};
-  }
-  const root = doc.documentElement;
-  const rn = localName(root);
-  if(rn !== "Invoice" && rn !== "CrossIndustryInvoice"){
-    return {valid:false, profile:"unknown",
-            errors:[err("XML-002","/","Root element is '"+rn+"'; expected a UBL Invoice or CII CrossIndustryInvoice. Send UBL 2.1 Invoice XML.")]};
-  }
-  const profile = detectProfile(root);
-
-  if(!cbc(root,"CustomizationID"))
-    errors.push(err("BR-01","/Invoice/cbc:CustomizationID",
-      "Add a CustomizationID (BT-24) naming the profile, e.g. 'urn:cen.eu:en16931:2017'."));
-  if(!cbc(root,"ID"))
-    errors.push(err("BR-02","/Invoice/cbc:ID","Set the invoice number (BT-1), non-empty."));
-  const issueDate = cbc(root,"IssueDate");
-  if(!issueDate){
-    errors.push(err("BR-03","/Invoice/cbc:IssueDate","Set the issue date (BT-2) as YYYY-MM-DD."));
-  }else if(!/^\d{4}-\d{2}-\d{2}$/.test(issueDate) || isNaN(Date.parse(issueDate))){
-    errors.push(err("BR-03a","/Invoice/cbc:IssueDate",
-      "IssueDate '"+issueDate+"' is not ISO YYYY-MM-DD (BT-2)."));
-  }
-  const currency = cbc(root,"DocumentCurrencyCode");
-  if(!currency){
-    errors.push(err("BR-04","/Invoice/cbc:DocumentCurrencyCode",
-      "Set DocumentCurrencyCode (BT-5), e.g. 'EUR'."));
-  }else if(!KNOWN_CURRENCIES.has(currency)){
-    errors.push(err("BR-04a","/Invoice/cbc:DocumentCurrencyCode",
-      "Currency '"+currency+"' is not a recognised ISO 4217 code (BT-5)."));
-  }
-  const seller = cac(root,"AccountingSupplierParty");
-  let sellerName = null;
-  if(seller){
-    const nameEls = seller.getElementsByTagNameNS(NS.CBC,"Name");
-    if(nameEls.length && (nameEls[0].textContent||"").trim()) sellerName = nameEls[0].textContent.trim();
-  }
-  if(!sellerName)
-    errors.push(err("BR-05","/Invoice/cac:AccountingSupplierParty/.../cbc:Name",
-      "Set the seller name (BT-27) under AccountingSupplierParty/Party/PartyName/Name."));
-  if(seller){
-    const idEls = seller.getElementsByTagNameNS(NS.CBC,"CompanyID");
-    if(idEls.length && (idEls[0].textContent||"").trim()){
-      const vat = idEls[0].textContent.trim();
-      const scheme = idEls[0].getAttribute("schemeID");
-      if(!scheme)
-        errors.push(err("BR-06","/Invoice/cac:AccountingSupplierParty/.../cbc:CompanyID",
-          "Seller VAT id present but cbc:CompanyID has no schemeID attribute (needed to identify BT-31 vs BT-30)."));
-      else if(!VAT_ID_RE.test(vat))
-        errors.push(err("BR-06a","/Invoice/cac:AccountingSupplierParty/.../cbc:CompanyID",
-          "VAT identifier '"+vat+"' must be country-prefix + alphanumeric (2 + 2..12 chars), e.g. 'DE123456789'."));
-    }
-  }
-  if(!cac(root,"InvoiceLine"))
-    errors.push(err("BR-07","/Invoice/cac:InvoiceLine",
-      "Add at least one InvoiceLine (BG-25). An invoice with no lines cannot be created."));
-  const totals = cac(root,"LegalMonetaryTotal");
-  if(!totals){
-    errors.push(err("BR-08","/Invoice/cac:LegalMonetaryTotal",
-      "Add LegalMonetaryTotal with at least TaxExclusiveAmount and TaxInclusiveAmount."));
-  }else{
-    const amt = tag=>{
-      const els = totals.getElementsByTagNameNS(NS.CBC, tag);
-      if(!els.length) return null;
-      const v = parseFloat((els[0].textContent||"").trim());
-      return isNaN(v) ? null : v;
-    };
-    const lineExt = amt("LineExtensionAmount");
-    const taxExcl = amt("TaxExclusiveAmount");
-    const taxIncl = amt("TaxInclusiveAmount");
-    if(lineExt===null || taxExcl===null || taxIncl===null){
-      errors.push(err("BR-08","/Invoice/cac:LegalMonetaryTotal",
-        "LegalMonetaryTotal must include LineExtensionAmount, TaxExclusiveAmount and TaxInclusiveAmount."));
-    }else if(Math.abs(lineExt - taxExcl) > 0.005){
-      errors.push(err("BR-08a","/Invoice/cac:LegalMonetaryTotal/cbc:TaxExclusiveAmount",
-        "TaxExclusiveAmount ("+taxExcl+") does not equal sum of line amounts ("+lineExt+
-        "); difference "+Math.abs(lineExt-taxExcl).toFixed(4)+". Recompute totals (BR-CO-13)."));
-    }
-    const payEls = totals.getElementsByTagNameNS(NS.CBC,"PayableAmount");
-    if(!payEls.length || !(payEls[0].textContent||"").trim())
-      errors.push(err("BR-09","/Invoice/cac:LegalMonetaryTotal/cbc:PayableAmount",
-        "Add PayableAmount (BT-115) so the invoice has a total due."));
-  }
-  if(seller && profile === "peppol-bis-3"){
-    const mailEls = seller.getElementsByTagNameNS(NS.CBC,"ElectronicMail");
-    if(!mailEls.length || !(mailEls[0].textContent||"").trim())
-      errors.push(err("PEPPOL-001","/Invoice/cac:AccountingSupplierParty/.../cbc:ElectronicMail",
-        "Peppol BIS 3.0 requires the seller contact e-mail (BT-41). Add Party/Contact/ElectronicMail."));
-  }
-  return {valid: errors.length===0, profile, errors};
-}
-
-/* ---- UI ---- */
-const $ = id => document.getElementById(id);
-const SAMPLE_OK = '<?xml version="1.0" encoding="UTF-8"?>\n' +
-'<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"\n' +
-'         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"\n' +
-'         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">\n' +
-'  <cbc:CustomizationID>urn:cen.eu:en16931:2017</cbc:CustomizationID>\n' +
-'  <cbc:ID>INV-2026-0001</cbc:ID>\n' +
-'  <cbc:IssueDate>2026-09-25</cbc:IssueDate>\n' +
-'  <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>\n' +
-'  <cac:AccountingSupplierParty>\n' +
-'    <cac:Party>\n' +
-'      <cac:PartyName><cbc:Name>Acme GmbH</cbc:Name></cac:PartyName>\n' +
-'      <cac:PartyLegalEntity>\n' +
-'        <cbc:CompanyID schemeID="VAT">DE123456789</cbc:CompanyID>\n' +
-'      </cac:PartyLegalEntity>\n' +
-'    </cac:Party>\n' +
-'  </cac:AccountingSupplierParty>\n' +
-'  <cac:InvoiceLine>\n' +
-'    <cbc:ID>1</cbc:ID><cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>\n' +
-'  </cac:InvoiceLine>\n' +
-'  <cac:LegalMonetaryTotal>\n' +
-'    <cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>\n' +
-'    <cbc:TaxExclusiveAmount currencyID="EUR">100.00</cbc:TaxExclusiveAmount>\n' +
-'    <cbc:TaxInclusiveAmount currencyID="EUR">119.00</cbc:TaxInclusiveAmount>\n' +
-'    <cbc:PayableAmount currencyID="EUR">119.00</cbc:PayableAmount>\n' +
-'  </cac:LegalMonetaryTotal>\n' +
-'</Invoice>';
-const SAMPLE_BROKEN = '<?xml version="1.0" encoding="UTF-8"?>\n' +
-'<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"\n' +
-'         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"\n' +
-'         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">\n' +
-'  <cbc:CustomizationID>urn:fdc:peppol.eu:2017:poacc:billing:3.0</cbc:CustomizationID>\n' +
-'  <cbc:IssueDate>25/09/2026</cbc:IssueDate>\n' +
-'  <cbc:DocumentCurrencyCode>EURO</cbc:DocumentCurrencyCode>\n' +
-'  <cac:AccountingSupplierParty>\n' +
-'    <cac:Party>\n' +
-'      <cac:PartyLegalEntity>\n' +
-'        <cbc:CompanyID>DE123456789</cbc:CompanyID>\n' +
-'      </cac:PartyLegalEntity>\n' +
-'    </cac:Party>\n' +
-'  </cac:AccountingSupplierParty>\n' +
-'  <cac:InvoiceLine><cbc:ID>1</cbc:ID></cac:InvoiceLine>\n' +
-'  <cac:LegalMonetaryTotal>\n' +
-'    <cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>\n' +
-'    <cbc:TaxExclusiveAmount currencyID="EUR">90.00</cbc:TaxExclusiveAmount>\n' +
-'    <cbc:TaxInclusiveAmount currencyID="EUR">119.00</cbc:TaxInclusiveAmount>\n' +
-'  </cac:LegalMonetaryTotal>\n' +
-'</Invoice>';
-
-function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
-
-let lastResult = null;
-
-function render(v){
-  lastResult = v;
-  const box = $("result");
-  box.style.display = "block";
-  let html = "";
-  const okIcon = '<svg class="big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg>';
-  const badIcon = '<svg class="big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.4v.2"/></svg>';
-  if(v.valid){
-    html += '<div class="verdict v-ok">'+okIcon+'<span>Valid — no rule violations found</span></div>';
-  }else{
-    html += '<div class="verdict v-bad">'+badIcon+'<span>'+v.errors.length+' issue'+(v.errors.length===1?"":"s")+' found</span></div>';
-  }
-  const codes = [...new Set(v.errors.map(e=>e.code))];
-  html += '<div class="meta"><span>Detected profile: <b>'+esc(v.profile)+'</b></span>';
-  if(codes.length) html += '<span>Rule codes: <b>'+codes.length+'</b></span>';
-  html += '</div>';
-  if(v.errors.length){
-    html += '<table><thead><tr><th>Rule</th><th>Location</th><th>How to fix</th></tr></thead><tbody>';
-    for(const e of v.errors){
-      html += '<tr><td class="rc">'+esc(e.code)+'</td><td><code>'+esc(e.path)+'</code></td><td class="fix">'+esc(e.fix_hint)+'</td></tr>';
-    }
-    html += '</tbody></table>';
-    html += '<div class="row"><button class="ghost" id="copyReport">Copy JSON report</button>'+
-            '<button class="ghost" id="downloadReport">Download report</button>'+
-            '<span class="kbdhint" id="copyMsg" style="color:var(--ok)"></span></div>';
-  }
-  box.innerHTML = html;
-  if($("copyReport")) $("copyReport").addEventListener("click", copyReport);
-  if($("downloadReport")) $("downloadReport").addEventListener("click", downloadReport);
-}
-
-function reportJSON(){
-  if(!lastResult) return null;
-  const codes = [...new Set(lastResult.errors.map(e=>e.code))];
-  return {profile:lastResult.profile, valid:lastResult.valid, codes, errors:lastResult.errors};
-}
-function copyReport(){
-  const j = reportJSON(); if(!j) return;
-  const txt = JSON.stringify(j, null, 2);
-  const done = ()=>{ const m=$("copyMsg"); if(m){ m.textContent="Copied ✓"; setTimeout(()=>m.textContent="",1800);} };
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(txt).then(done, ()=>{});
-  }else{
-    const ta=document.createElement("textarea"); ta.value=txt; document.body.appendChild(ta); ta.select();
-    try{ document.execCommand("copy"); done(); }catch(e){}
-    document.body.removeChild(ta);
-  }
-}
-function downloadReport(){
-  const j = reportJSON(); if(!j) return;
-  const blob = new Blob([JSON.stringify(j,null,2)], {type:"application/json"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob); a.download = "validation-report.json";
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  URL.revokeObjectURL(a.href);
-}
-
-function run(){
-  const text = $("xml").value;
-  if(!text.trim()){ $("result").style.display="none"; lastResult=null; return; }
-  render(validate(text));
-}
-
-$("validate").addEventListener("click", run);
-$("loadSample").addEventListener("click", ()=>{ $("xml").value=SAMPLE_OK; run(); });
-$("loadBroken").addEventListener("click", ()=>{ $("xml").value=SAMPLE_BROKEN; run(); });
-$("pick").addEventListener("click", ()=>$("file").click());
-$("file").addEventListener("change", ev=>{
-  const f = ev.target.files[0]; if(!f) return;
-  const r = new FileReader(); r.onload = ()=>{ $("xml").value = r.result; run(); }; r.readAsText(f);
-});
-const drop = $("drop");
-const openPicker = ()=>$("file").click();
-drop.addEventListener("click", openPicker);
-drop.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openPicker(); } });
-["dragenter","dragover"].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add("hot");}));
-["dragleave","drop"].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove("hot");}));
-drop.addEventListener("drop", e=>{
-  const f = e.dataTransfer.files[0]; if(!f) return;
-  const r = new FileReader(); r.onload = ()=>{ $("xml").value = r.result; run(); }; r.readAsText(f);
-});
-document.addEventListener("keydown", e=>{
-  if((e.ctrlKey||e.metaKey) && e.key==="Enter"){ e.preventDefault(); run(); }
-});
-</script>
 </body>
 </html>

@@ -8,15 +8,20 @@
 #   - robots.txt "Sitemap:" and sitemap.xml <loc> resolve
 #   - search + answer engines (GEO) can actually fetch and cite the pages
 #
+# Optionally set the contact/inbound address at the same time (recommended:
+# a printed placeholder contact is as bad as a placeholder domain):
+#   ./SET_SITE_URL.sh https://your-real-domain.tld you@your-domain.tld
+#
 # Usage:
-#   ./SET_SITE_URL.sh https://your-real-domain.tld   (no trailing slash)
+#   ./SET_SITE_URL.sh https://your-real-domain.tld [contact@email]
 #
 set -euo pipefail
 
 PLACEHOLDER="https://invoice-validator.example"
+CONTACT_PLACEHOLDER="hello@example.com"
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-usage() { echo "usage: $0 https://your-real-domain.tld   (no trailing slash)" >&2; exit 2; }
+usage() { echo "usage: $0 https://your-real-domain.tld [contact@email]   (no trailing slash)" >&2; exit 2; }
 
 [ "${1:-}" ] || usage
 NEW="$1"
@@ -44,6 +49,25 @@ for f in "${FILES[@]}"; do
   sed "s|$PLACEHOLDER|$NEW|g" "$path" > "$tmp" && mv "$tmp" "$path"
   echo "  $f: $before occurrence(s) updated"
 done
+
+# Optional: replace the printed contact placeholder in one shot.
+CONTACT="${2:-}"
+if [ -n "$CONTACT" ]; then
+  case "$CONTACT" in
+    *@*.*) ;;
+    *) echo "error: '$CONTACT' does not look like an email address" >&2; usage ;;
+  esac
+  echo "Replacing contact '$CONTACT_PLACEHOLDER' -> '$CONTACT'"
+  for f in "${FILES[@]}"; do
+    path="$HERE/$f"
+    [ -f "$path" ] || continue
+    before=$(grep -c "$CONTACT_PLACEHOLDER" "$path" || true)
+    [ "$before" -gt 0 ] || continue
+    tmp="$(mktemp)"
+    sed "s|$CONTACT_PLACEHOLDER|$CONTACT|g" "$path" > "$tmp" && mv "$tmp" "$path"
+    echo "  $f: $before occurrence(s) updated"
+  done
+fi
 
 leftover=$(grep -rl "$PLACEHOLDER" "$HERE" --include='*.html' --include='*.xml' --include='*.txt' 2>/dev/null || true)
 if [ -n "$leftover" ]; then
