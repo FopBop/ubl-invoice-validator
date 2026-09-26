@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ublcheck"
+version = "1.0.0"
+description = "Dependency-free EN 16931 / Peppol BIS e-invoice XML validator (UBL, XRechnung). Offline, stdlib-only."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Automaton Founder" }]
+keywords = [
+    "en16931", "peppol", "peppol-bis", "e-invoicing", "einvoicing",
+    "ubl", "xrechnung", "zugferd", "invoice", "validation",
+    "invoice-validation", "xml", "eu", "billing",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Accounting",
+    "Topic :: Text Processing :: Markup :: XML",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/FopBop/ubl-invoice-validator"
+Repository = "https://github.com/FopBop/ubl-invoice-validator"
+Issues = "https://github.com/FopBop/ubl-invoice-validator/issues"
+Changelog = "https://github.com/FopBop/ubl-invoice-validator/blob/main/RUNBOOK.md"
+
+[project.scripts]
+ublcheck = "ublcheck:cli"
+
+[tool.setuptools]
+py-modules = ["ublcheck"]
