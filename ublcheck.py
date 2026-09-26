@@ -98,6 +98,23 @@ def validate(xml_text):
         names = [(e.text or "").strip() for e in seller.iter(_q(CBC, "Name"))]
         if not names or not names[0]:
             errors.append(err("BR-05", "/Invoice/cac:AccountingSupplierParty/.../cbc:Name", "Set the seller name."))
+        # BR-06: a seller VAT/company identifier present but with no schemeID is
+        # ambiguous (cannot tell BT-31 from BT-30); BR-06a: VAT id must be
+        # country-prefix + alphanumeric (2 + 2..12). Mirrors the browser engine.
+        for cid_el in seller.iter(_q(CBC, "CompanyID")):
+            vat = (cid_el.text or "").strip()
+            if not vat:
+                continue
+            scheme = cid_el.get("schemeID")
+            if not scheme:
+                errors.append(err("BR-06", "/Invoice/cac:AccountingSupplierParty/.../cbc:CompanyID",
+                                  "Seller VAT id present but cbc:CompanyID has no schemeID attribute "
+                                  "(needed to identify BT-31 vs BT-30)."))
+            elif not VAT_ID_RE.match(vat):
+                errors.append(err("BR-06a", "/Invoice/cac:AccountingSupplierParty/.../cbc:CompanyID",
+                                  "VAT identifier '%s' must be country-prefix + alphanumeric "
+                                  "(2 + 2..12 chars), e.g. 'DE123456789'." % vat))
+            break
 
     if cac(root, "InvoiceLine") is None:
         errors.append(err("BR-07", "/Invoice/cac:InvoiceLine", "Add at least one InvoiceLine (BG-25)."))
@@ -115,13 +132,21 @@ def validate(xml_text):
             return None
         line_ext = amt("LineExtensionAmount")
         tax_excl = amt("TaxExclusiveAmount")
-        if line_ext is None:
-            errors.append(err("BR-08", "/Invoice/cac:LegalMonetaryTotal/cbc:LineExtensionAmount", "Set LineExtensionAmount (BT-106)."))
-        if tax_excl is None:
-            errors.append(err("BR-08a", "/Invoice/cac:LegalMonetaryTotal/cbc:TaxExclusiveAmount", "Set TaxExclusiveAmount (BT-109)."))
-        elif line_ext is not None and abs(line_ext - tax_excl) > 0.01:
+        tax_incl = amt("TaxInclusiveAmount")
+        if line_ext is None or tax_excl is None or tax_incl is None:
+            errors.append(err("BR-08", "/Invoice/cac:LegalMonetaryTotal",
+                              "LegalMonetaryTotal must include LineExtensionAmount (BT-106), "
+                              "TaxExclusiveAmount (BT-109) and TaxInclusiveAmount (BT-112)."))
+        elif abs(line_ext - tax_excl) > 0.005:
             errors.append(err("BR-08a", "/Invoice/cac:LegalMonetaryTotal/cbc:TaxExclusiveAmount",
-                              "TaxExclusiveAmount %s must equal LineExtensionAmount %s (diff %.4f). Recompute totals (BR-CO-13)." % (tax_excl, line_ext, abs(line_ext - tax_excl))))
+                              "TaxExclusiveAmount %s does not equal sum of line amounts %s "
+                              "(difference %.4f). Recompute totals (BR-CO-13)."
+                              % (tax_excl, line_ext, abs(line_ext - tax_excl))))
+        # BR-09: a monetary total with no payable amount has no total due.
+        payable = cbc(totals, "PayableAmount")
+        if not payable:
+            errors.append(err("BR-09", "/Invoice/cac:LegalMonetaryTotal/cbc:PayableAmount",
+                              "Add PayableAmount (BT-115) so the invoice has a total due."))
 
     if seller is not None and profile == "peppol-bis-3":
         mails = [(e.text or "").strip() for e in seller.iter(_q(CBC, "ElectronicMail"))]

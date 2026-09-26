@@ -2,70 +2,304 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EN 16931 / UBL Invoice Validator — offline, in your browser</title>
-<meta name="description" content="Free, no-signup validator for UBL and CII e-invoices against EN 16931 / Peppol BIS 3.0 business rules. Runs entirely in your browser — your invoice never leaves your device.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EN 16931 &amp; Peppol Invoice Validator — Free, Private, In-Browser</title>
+<meta name="description" content="Validate UBL &amp; CII e-invoices against EN 16931 and Peppol BIS 3.0 business rules — free, no signup, no upload. Your invoice never leaves your browser. Catches the missing or malformed fields that get invoices rejected by access points.">
+<meta name="keywords" content="EN 16931 validator, Peppol BIS 3.0 validator, UBL invoice validator, CII CrossIndustryInvoice, XRechnung validation, e-invoice validator, EU e-invoicing, Peppol access point rejection">
+<meta name="author" content="EN 16931 Validator (open core)">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#0b0f17">
+<link rel="canonical" href="https://invoice-validator.example/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EN 16931 Invoice Validator">
+<meta property="og:title" content="EN 16931 &amp; Peppol Invoice Validator — free, private, in-browser">
+<meta property="og:description" content="Catch the missing or malformed fields that get EU e-invoices rejected — before you send. Runs entirely in your browser; nothing is uploaded.">
+<meta property="og:url" content="https://invoice-validator.example/">
+<meta property="og:image" content="https://invoice-validator.example/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="EN 16931 / Peppol invoice validator — free, private, in-browser">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EN 16931 &amp; Peppol Invoice Validator — free &amp; private">
+<meta name="twitter:description" content="Validate UBL/CII e-invoices against EN 16931 / Peppol BIS 3.0 rules in your browser. No upload, no signup.">
+<meta name="twitter:image" content="https://invoice-validator.example/og-image.png">
+<meta name="geo.region" content="EU">
+<meta name="category" content="E-invoicing compliance / developer tool">
+<meta name="generator" content="EN 16931 Validator (open core)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0f17'/%3E%3Cpath d='M13 18l2.2 2.2L19 15.5' fill='none' stroke='%2343d17f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="manifest" href="site.webmanifest">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "EN 16931 Validator",
+      "url": "https://invoice-validator.example/",
+      "description": "Open-core, privacy-first validator for EU e-invoices (EN 16931 / Peppol BIS 3.0).",
+      "sameAs": []
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "EN 16931 / Peppol Invoice Validator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any (web browser, Python 3)",
+      "description": "Free, private validator for UBL and CII e-invoices against EN 16931 and Peppol BIS 3.0 business rules. Runs fully in the browser; invoices are never uploaded.",
+      "softwareVersion": "1.0",
+      "featureList": ["EN 16931 business rule checks","Peppol BIS 3.0 profile checks","UBL Invoice and CII CrossIndustryInvoice support","Runs 100% client-side (no upload)","Machine-readable rule codes"],
+      "offers": {"@type": "Offer","price": "0","priceCurrency": "EUR","description": "Free open-core browser and CLI validator"},
+      "license": "https://opensource.org/licenses/MIT"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question","name": "What is EN 16931?","acceptedAnswer": {"@type": "Answer","text": "EN 16931 is the European standard that defines the semantic data model for a core electronic invoice. It specifies which fields (business terms) an e-invoice must contain and the business rules they must satisfy, so invoices are interoperable across EU countries, Peppol, and national CIUS profiles like XRechnung."}},
+        {"@type": "Question","name": "Does my invoice get uploaded to a server?","acceptedAnswer": {"@type": "Answer","text": "No. The browser validator runs entirely in your browser using JavaScript and never sends your invoice anywhere. Your document stays on your device."}},
+        {"@type": "Question","name": "Which formats can it validate?","acceptedAnswer": {"@type": "Answer","text": "It validates UBL 2.1 Invoice XML and UN/CEFACT CII CrossIndustryInvoice XML, checking them against a documented subset of EN 16931 business rules and Peppol BIS Billing 3.0 profile rules."}},
+        {"@type": "Question","name": "Is passing this validation a guarantee my invoice will be accepted?","acceptedAnswer": {"@type": "Answer","text": "No. This is a linter for a documented subset of rules, not a certification body. Passing it reduces the most common rejection causes but does not guarantee acceptance by every access point."}}
+      ]
+    }
+  ]
+}
+</script>
 <style>
   :root{
-    --bg:#0e1117; --panel:#161b22; --line:#30363d; --fg:#e6edf3; --mut:#8b949e;
-    --ok:#3fb950; --err:#f85149; --warn:#d29922; --acc:#58a6ff;
+    --bg:#0b0f17; --bg2:#0e131d; --panel:#141b26; --panel2:#182130;
+    --line:#26303f; --line2:#313c4e;
+    --fg:#e8eef7; --mut:#9aa7b8; --mut2:#6b7a8d;
+    --acc:#4f8fff; --acc-hi:#6ba0ff; --acc-ink:#04122b;
+    --ok:#43d17f; --err:#ff6b6b; --warn:#f0b429;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 32px -12px rgba(0,0,0,.55);
+    --radius:14px;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--fg);
-       font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-  header{padding:28px 20px 10px;max-width:900px;margin:0 auto}
-  h1{font-size:22px;margin:0 0 6px}
-  .sub{color:var(--mut);font-size:14px;margin:0 0 4px}
-  main{max-width:900px;margin:0 auto;padding:0 20px 60px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;margin:18px 0}
-  textarea{width:100%;min-height:230px;background:#0d1117;color:var(--fg);border:1px solid var(--line);
-           border-radius:8px;padding:12px;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical}
-  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
-  button{background:var(--acc);color:#03121f;border:0;border-radius:8px;padding:10px 16px;font-weight:600;cursor:pointer}
-  button.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-  button:disabled{opacity:.5;cursor:not-allowed}
-  .verdict{font-weight:700;font-size:17px;padding:12px 14px;border-radius:8px;margin-bottom:6px}
-  .v-ok{background:rgba(63,185,80,.12);border:1px solid var(--ok);color:var(--ok)}
-  .v-bad{background:rgba(248,81,73,.12);border:1px solid var(--err);color:var(--err)}
-  .profile{color:var(--mut);font-size:13px;margin-bottom:12px}
-  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
-  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{color:var(--mut);font-weight:600}
-  code{background:#0d1117;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12px}
-  .hint{color:var(--mut)}
-  .foot{color:var(--mut);font-size:12px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}
-  a{color:var(--acc)}
-  .drop{border:1px dashed var(--line);border-radius:8px;padding:14px;text-align:center;color:var(--mut);margin-bottom:10px}
-  .drop.hot{border-color:var(--acc);color:var(--fg)}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:
+      radial-gradient(1100px 520px at 78% -8%, rgba(79,143,255,.14), transparent 60%),
+      radial-gradient(900px 500px at 6% 4%, rgba(67,209,127,.08), transparent 58%),
+      var(--bg);
+    color:var(--fg);
+    font:15px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  a{color:var(--acc-hi);text-underline-offset:2px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  code,kbd,pre,textarea{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace}
+  .sitehead{position:sticky;top:0;z-index:20;backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(11,15,23,.78);border-bottom:1px solid var(--line)}
+  .sitehead .wrap{display:flex;align-items:center;gap:14px;height:58px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em}
+  .brand svg{flex:none}
+  .brand span{font-size:15px}
+  .navlinks{margin-left:auto;display:flex;gap:20px;align-items:center}
+  .navlinks a{color:var(--mut);text-decoration:none;font-size:13.5px;font-weight:500}
+  .navlinks a:hover{color:var(--fg)}
+  @media (max-width:620px){.navlinks{display:none}}
+  header.hero{padding:54px 0 8px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--ok);
+    background:rgba(67,209,127,.10);border:1px solid rgba(67,209,127,.32);
+    padding:5px 11px;border-radius:999px;margin-bottom:18px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(67,209,127,.18)}
+  h1{font-size:clamp(28px,4.4vw,44px);line-height:1.12;letter-spacing:-.022em;margin:0 0 14px;font-weight:800}
+  h1 .hl{background:linear-gradient(92deg,var(--acc-hi),var(--ok));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{font-size:clamp(16px,2vw,19px);color:var(--mut);max-width:62ch;margin:0 0 22px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+  .trust{display:flex;gap:20px;flex-wrap:wrap;color:var(--mut2);font-size:13px;margin-top:14px}
+  .trust b{color:var(--fg);font-weight:600}
+  button,.btn{font:inherit;cursor:pointer;border-radius:10px;border:1px solid transparent;
+    padding:11px 18px;font-weight:600;display:inline-flex;align-items:center;gap:8px;
+    transition:transform .06s ease,background .15s ease,border-color .15s ease;text-decoration:none}
+  button:active,.btn:active{transform:translateY(1px)}
+  .btn-primary,button.primary{background:var(--acc);color:var(--acc-ink);box-shadow:0 6px 18px -8px rgba(79,143,255,.8)}
+  .btn-primary:hover,button.primary:hover{background:var(--acc-hi)}
+  .btn-ghost,button.ghost{background:var(--panel2);color:var(--fg);border-color:var(--line2)}
+  .btn-ghost:hover,button.ghost:hover{border-color:var(--acc);color:#fff}
+  button:focus-visible,.btn:focus-visible{outline:2px solid var(--acc-hi);outline-offset:2px}
+  section{padding:26px 0}
+  .card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);
+    border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+  h2{font-size:22px;letter-spacing:-.015em;margin:0 0 6px}
+  h3{font-size:16px;margin:0 0 4px}
+  .muted{color:var(--mut)}
+  .grid3{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .feature{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .feature .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    background:rgba(79,143,255,.12);border:1px solid rgba(79,143,255,.28);margin-bottom:12px}
+  .feature p{margin:4px 0 0;color:var(--mut);font-size:14px}
+  .toolhead{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  .toolhead h2{margin:0;font-size:18px}
+  .badge{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--ok);background:rgba(67,209,127,.1);border:1px solid rgba(67,209,127,.3);
+    padding:3px 9px;border-radius:999px}
+  .drop{border:1.5px dashed var(--line2);border-radius:12px;padding:16px;text-align:center;
+    color:var(--mut);margin-bottom:12px;transition:.15s;background:rgba(255,255,255,.012)}
+  .drop.hot{border-color:var(--acc);color:var(--fg);background:rgba(79,143,255,.08)}
+  textarea{width:100%;min-height:248px;background:#080c13;color:#dbe6f3;border:1px solid var(--line2);
+    border-radius:12px;padding:14px;font-size:13px;line-height:1.55;resize:vertical;tab-size:2}
+  textarea::placeholder{color:#4d5c6e}
+  textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px rgba(79,143,255,.16)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+  .row .spacer{flex:1}
+  .kbdhint{color:var(--mut2);font-size:12px}
+  kbd{background:#0c121c;border:1px solid var(--line2);border-bottom-width:2px;border-radius:5px;
+    padding:1px 6px;font-size:11.5px;color:var(--mut)}
+  .verdict{display:flex;align-items:center;gap:12px;font-weight:700;font-size:16px;
+    padding:14px 16px;border-radius:11px;margin-bottom:12px;border:1px solid transparent}
+  .v-ok{background:rgba(67,209,127,.1);border-color:rgba(67,209,127,.42);color:var(--ok)}
+  .v-bad{background:rgba(255,107,107,.09);border-color:rgba(255,107,107,.42);color:var(--err)}
+  .verdict .big{width:26px;height:26px;flex:none}
+  .meta{display:flex;gap:16px;flex-wrap:wrap;color:var(--mut);font-size:13px;margin:6px 0 12px}
+  .meta b{color:var(--fg)}
+  table{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--mut);font-weight:600;background:rgba(255,255,255,.02);font-size:12px;letter-spacing:.03em;text-transform:uppercase}
+  tr:last-child td{border-bottom:0}
+  .rc{font-weight:700;color:var(--err);white-space:nowrap}
+  td .fix{color:var(--mut)}
+  code{background:#0c121c;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;color:#cfe0f5}
+  .empty{color:var(--mut);font-size:14px;padding:8px 0}
+  details{border:1px solid var(--line);border-radius:11px;padding:14px 16px;background:var(--panel);margin:10px 0}
+  details[open]{background:var(--panel2)}
+  summary{cursor:pointer;font-weight:600;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+";color:var(--acc);margin-right:10px;font-weight:700}
+  details[open] summary::before{content:"-"}
+  details p{margin:10px 0 0;color:var(--mut);font-size:14px}
+  .foot{color:var(--mut);font-size:13px;margin-top:30px;border-top:1px solid var(--line);
+    padding-top:20px;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}
+  .foot .links{display:flex;gap:16px;flex-wrap:wrap}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 </style>
 </head>
 <body>
-<header>
-  <h1>EN 16931 / UBL e-invoice validator</h1>
-  <p class="sub">Checks UBL Invoice &amp; CII CrossIndustryInvoice XML against EN 16931 and Peppol BIS 3.0 business rules.</p>
-  <p class="sub"><strong>Runs 100% in your browser.</strong> Your invoice is never uploaded — nothing leaves your device.</p>
-</header>
-<main>
-  <div class="card">
-    <div class="drop" id="drop">Drop an <code>.xml</code> e-invoice here, or paste it below.</div>
-    <textarea id="xml" spellcheck="false" placeholder="&lt;?xml version=&quot;1.0&quot;?&gt;&#10;&lt;Invoice xmlns=&quot;urn:oasis:names:specification:ubl:schema:xsd:Invoice-2&quot; ...&gt;&#10;  ...&#10;&lt;/Invoice&gt;"></textarea>
-    <div class="row">
-      <button id="validate">Validate invoice</button>
-      <button class="ghost" id="loadSample">Load valid sample</button>
-      <button class="ghost" id="loadBroken">Load broken sample</button>
-      <input type="file" id="file" accept=".xml,text/xml,application/xml" hidden>
-      <button class="ghost" id="pick">Choose file…</button>
+<header class="sitehead">
+  <div class="wrap">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0b0f17"/><path d="M9 9h11l4 4v10a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1z" fill="none" stroke="#4f8fff" stroke-width="1.6"/><path d="M19 9v4h4" fill="none" stroke="#4f8fff" stroke-width="1.6"/><path d="M13 18l2.2 2.2L19 15.5" fill="none" stroke="#43d17f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>EN&nbsp;16931&nbsp;Validator</span>
     </div>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="#validator">Validate</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a href="golive/index.html">Pricing</a>
+    </nav>
   </div>
-  <div class="card" id="result" style="display:none"></div>
+</header>
+
+<header class="hero wrap">
+  <span class="eyebrow"><span class="dot"></span> Free · No signup · Nothing leaves your browser</span>
+  <h1>Catch the invoice error <span class="hl">before the access point rejects it</span>.</h1>
+  <p class="lede">
+    A rejected EU e-invoice stalls a payment. This validator checks a UBL or CII invoice against
+    <strong>EN&nbsp;16931</strong> and <strong>Peppol&nbsp;BIS&nbsp;3.0</strong> business rules and tells you
+    exactly which field failed and how to fix it — in seconds, with no upload and no account.
+  </p>
+  <div class="cta">
+    <a class="btn btn-primary" href="#validator">Validate an invoice &rarr;</a>
+    <a class="btn btn-ghost" href="#how">See the rules it checks</a>
+  </div>
+  <div class="trust">
+    <span><b>100%</b> client-side</span>
+    <span><b>0</b> invoices uploaded</span>
+    <span><b>Machine-readable</b> rule codes</span>
+    <span><b>MIT</b> open core</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="validator">
+    <div class="card">
+      <div class="toolhead">
+        <h2>Invoice validator</h2>
+        <span class="badge">Runs locally</span>
+        <span class="kbdhint" style="margin-left:auto">Paste · drop a file · or load a sample</span>
+      </div>
+      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Drop an XML e-invoice here or press Enter to choose a file">
+        Drop an <code>.xml</code> e-invoice here — or <u>choose a file</u>. Nothing is uploaded.
+      </div>
+      <input type="file" id="file" accept=".xml,text/xml,application/xml" hidden>
+      <label class="sr-only" for="xml">Invoice XML</label>
+      <textarea id="xml" spellcheck="false" autocomplete="off" autocapitalize="off"
+        placeholder="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#10;&lt;Invoice xmlns=&quot;urn:oasis:names:specification:ubl:schema:xsd:Invoice-2&quot; ...&gt;&#10;  ...&#10;&lt;/Invoice&gt;"></textarea>
+      <div class="row">
+        <button class="primary" id="validate">Validate invoice</button>
+        <button class="ghost" id="loadSample">Load valid sample</button>
+        <button class="ghost" id="loadBroken">Load broken sample</button>
+        <button class="ghost" id="pick">Choose file…</button>
+        <span class="spacer"></span>
+        <span class="kbdhint">Press <kbd>Ctrl</kbd>/<kbd>&#8984;</kbd> + <kbd>Enter</kbd> to validate</span>
+      </div>
+    </div>
+    <div class="card" id="result" style="display:none" aria-live="polite"></div>
+  </section>
+
+  <section id="how">
+    <h2>What it checks — and what it won't</h2>
+    <p class="muted" style="max-width:70ch;margin-top:0">
+      A focused subset of the rules that cause most real-world access-point rejections. Each violation
+      is reported as a rule code (e.g. <code>BR-03a</code>), the location, and a one-line fix.
+    </p>
+    <div class="grid3">
+      <div class="feature">
+        <div class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f8fff" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"/></svg></div>
+        <h3>EN 16931 core rules</h3>
+        <p>Mandatory business terms and the <code>BR-01…BR-09</code> presence/format checks — invoice number, issue date (ISO&nbsp;8601), currency (ISO&nbsp;4217), seller identity, and totals that reconcile.</p>
+      </div>
+      <div class="feature">
+        <div class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f8fff" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg></div>
+        <h3>Peppol BIS 3.0 profile</h3>
+        <p>Detects the <code>CustomizationID</code> and applies profile rules — for example the seller contact e-mail required by Peppol BIS (<code>PEPPOL-001</code>).</p>
+      </div>
+      <div class="feature">
+        <div class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f8fff" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg></div>
+        <h3>Totals reconciliation</h3>
+        <p>Catches the silent killer: <code>TaxExclusiveAmount</code> that doesn't equal the sum of line amounts (<code>BR-CO-13</code>) — a mismatch that gets the invoice bounced.</p>
+      </div>
+    </div>
+    <p class="muted" style="font-size:13.5px;margin-top:16px">
+      <strong>Honest scope:</strong> this is a linter for a documented subset, not a certification body.
+      Passing it lowers the most common rejection causes but does not guarantee acceptance by every access point.
+    </p>
+  </section>
+
+  <section id="faq">
+    <h2>Frequently asked</h2>
+    <details open>
+      <summary>Does my invoice get uploaded anywhere?</summary>
+      <p>No. Validation runs entirely in your browser in JavaScript. Your XML never leaves your device, and there is no tracking or account.</p>
+    </details>
+    <details>
+      <summary>Which e-invoice formats are supported?</summary>
+      <p>UBL 2.1 <code>Invoice</code> and UN/CEFACT CII <code>CrossIndustryInvoice</code> XML — the formats used by Peppol BIS and XRechnung.</p>
+    </details>
+    <details>
+      <summary>What is EN&nbsp;16931?</summary>
+      <p>The European standard defining the semantic model and business rules for a core e-invoice. It makes invoices interoperable across the EU, Peppol, and national profiles (CIUS) such as XRechnung.</p>
+    </details>
+    <details>
+      <summary>Can I run this in CI or on a server?</summary>
+      <p>Yes. The same rule subset ships as a zero-dependency Python CLI (<code>ublcheck.py</code>) and a small HTTP service (<code>POST /validate</code>, plus bulk <code>POST /validate-batch</code>).</p>
+    </details>
+  </section>
+
   <div class="foot">
-    Deterministic rule subset (BR-01…BR-09, PEPPOL-001). No data leaves your browser.
-    This is a free tool; no account, no upload, no tracking.
+    <span>EN&nbsp;16931 / Peppol BIS&nbsp;3.0 validator — a free, open-core linter. Deterministic; no data leaves your browser.</span>
+    <span class="links">
+      <a href="#how">Scope &amp; rules</a>
+      <a href="#faq">FAQ</a>
+      <a href="golive/index.html">Pricing</a>
+    </span>
   </div>
 </main>
 <script>
 "use strict";
-/* ---- EN 16931 / Peppol BIS 3.0 rule subset, ported from the stdlib spike.
+/* ---- EN 16931 / Peppol BIS 3.0 rule subset (ported from the stdlib engine).
    Pure functions, no I/O. Returns {valid, profile, errors:[{code,path,fix_hint}]}. ---- */
 const NS = {
   UBL:"urn:oasis:names:specification:ubl:schema:xsd:Invoice-2",
@@ -121,10 +355,8 @@ function validate(xmlText){
   if(!cbc(root,"CustomizationID"))
     errors.push(err("BR-01","/Invoice/cbc:CustomizationID",
       "Add a CustomizationID (BT-24) naming the profile, e.g. 'urn:cen.eu:en16931:2017'."));
-
   if(!cbc(root,"ID"))
     errors.push(err("BR-02","/Invoice/cbc:ID","Set the invoice number (BT-1), non-empty."));
-
   const issueDate = cbc(root,"IssueDate");
   if(!issueDate){
     errors.push(err("BR-03","/Invoice/cbc:IssueDate","Set the issue date (BT-2) as YYYY-MM-DD."));
@@ -132,7 +364,6 @@ function validate(xmlText){
     errors.push(err("BR-03a","/Invoice/cbc:IssueDate",
       "IssueDate '"+issueDate+"' is not ISO YYYY-MM-DD (BT-2)."));
   }
-
   const currency = cbc(root,"DocumentCurrencyCode");
   if(!currency){
     errors.push(err("BR-04","/Invoice/cbc:DocumentCurrencyCode",
@@ -141,7 +372,6 @@ function validate(xmlText){
     errors.push(err("BR-04a","/Invoice/cbc:DocumentCurrencyCode",
       "Currency '"+currency+"' is not a recognised ISO 4217 code (BT-5)."));
   }
-
   const seller = cac(root,"AccountingSupplierParty");
   let sellerName = null;
   if(seller){
@@ -151,7 +381,6 @@ function validate(xmlText){
   if(!sellerName)
     errors.push(err("BR-05","/Invoice/cac:AccountingSupplierParty/.../cbc:Name",
       "Set the seller name (BT-27) under AccountingSupplierParty/Party/PartyName/Name."));
-
   if(seller){
     const idEls = seller.getElementsByTagNameNS(NS.CBC,"CompanyID");
     if(idEls.length && (idEls[0].textContent||"").trim()){
@@ -165,11 +394,9 @@ function validate(xmlText){
           "VAT identifier '"+vat+"' must be country-prefix + alphanumeric (2 + 2..12 chars), e.g. 'DE123456789'."));
     }
   }
-
   if(!cac(root,"InvoiceLine"))
     errors.push(err("BR-07","/Invoice/cac:InvoiceLine",
       "Add at least one InvoiceLine (BG-25). An invoice with no lines cannot be created."));
-
   const totals = cac(root,"LegalMonetaryTotal");
   if(!totals){
     errors.push(err("BR-08","/Invoice/cac:LegalMonetaryTotal",
@@ -197,92 +424,129 @@ function validate(xmlText){
       errors.push(err("BR-09","/Invoice/cac:LegalMonetaryTotal/cbc:PayableAmount",
         "Add PayableAmount (BT-115) so the invoice has a total due."));
   }
-
   if(seller && profile === "peppol-bis-3"){
     const mailEls = seller.getElementsByTagNameNS(NS.CBC,"ElectronicMail");
     if(!mailEls.length || !(mailEls[0].textContent||"").trim())
       errors.push(err("PEPPOL-001","/Invoice/cac:AccountingSupplierParty/.../cbc:ElectronicMail",
         "Peppol BIS 3.0 requires the seller contact e-mail (BT-41). Add Party/Contact/ElectronicMail."));
   }
-
   return {valid: errors.length===0, profile, errors};
 }
 
 /* ---- UI ---- */
 const $ = id => document.getElementById(id);
-const SAMPLE_OK = `<?xml version="1.0" encoding="UTF-8"?>
-<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
-         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
-         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
-  <cbc:CustomizationID>urn:cen.eu:en16931:2017</cbc:CustomizationID>
-  <cbc:ID>INV-2026-0001</cbc:ID>
-  <cbc:IssueDate>2026-09-25</cbc:IssueDate>
-  <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>
-  <cac:AccountingSupplierParty>
-    <cac:Party>
-      <cac:PartyName><cbc:Name>Acme GmbH</cbc:Name></cac:PartyName>
-      <cac:PartyLegalEntity>
-        <cbc:CompanyID schemeID="VAT">DE123456789</cbc:CompanyID>
-      </cac:PartyLegalEntity>
-    </cac:Party>
-  </cac:AccountingSupplierParty>
-  <cac:InvoiceLine>
-    <cbc:ID>1</cbc:ID><cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>
-  </cac:InvoiceLine>
-  <cac:LegalMonetaryTotal>
-    <cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>
-    <cbc:TaxExclusiveAmount currencyID="EUR">100.00</cbc:TaxExclusiveAmount>
-    <cbc:TaxInclusiveAmount currencyID="EUR">119.00</cbc:TaxInclusiveAmount>
-    <cbc:PayableAmount currencyID="EUR">119.00</cbc:PayableAmount>
-  </cac:LegalMonetaryTotal>
-</Invoice>`;
-const SAMPLE_BROKEN = `<?xml version="1.0" encoding="UTF-8"?>
-<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
-         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
-         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
-  <cbc:CustomizationID>urn:fdc:peppol.eu:2017:poacc:billing:3.0</cbc:CustomizationID>
-  <cbc:IssueDate>25/09/2026</cbc:IssueDate>
-  <cbc:DocumentCurrencyCode>EURO</cbc:DocumentCurrencyCode>
-  <cac:AccountingSupplierParty>
-    <cac:Party>
-      <cac:PartyLegalEntity>
-        <cbc:CompanyID>DE123456789</cbc:CompanyID>
-      </cac:PartyLegalEntity>
-    </cac:Party>
-  </cac:AccountingSupplierParty>
-  <cac:InvoiceLine><cbc:ID>1</cbc:ID></cac:InvoiceLine>
-  <cac:LegalMonetaryTotal>
-    <cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>
-    <cbc:TaxExclusiveAmount currencyID="EUR">90.00</cbc:TaxExclusiveAmount>
-    <cbc:TaxInclusiveAmount currencyID="EUR">119.00</cbc:TaxInclusiveAmount>
-  </cac:LegalMonetaryTotal>
-</Invoice>`;
+const SAMPLE_OK = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+'<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"\n' +
+'         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"\n' +
+'         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">\n' +
+'  <cbc:CustomizationID>urn:cen.eu:en16931:2017</cbc:CustomizationID>\n' +
+'  <cbc:ID>INV-2026-0001</cbc:ID>\n' +
+'  <cbc:IssueDate>2026-09-25</cbc:IssueDate>\n' +
+'  <cbc:DocumentCurrencyCode>EUR</cbc:DocumentCurrencyCode>\n' +
+'  <cac:AccountingSupplierParty>\n' +
+'    <cac:Party>\n' +
+'      <cac:PartyName><cbc:Name>Acme GmbH</cbc:Name></cac:PartyName>\n' +
+'      <cac:PartyLegalEntity>\n' +
+'        <cbc:CompanyID schemeID="VAT">DE123456789</cbc:CompanyID>\n' +
+'      </cac:PartyLegalEntity>\n' +
+'    </cac:Party>\n' +
+'  </cac:AccountingSupplierParty>\n' +
+'  <cac:InvoiceLine>\n' +
+'    <cbc:ID>1</cbc:ID><cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>\n' +
+'  </cac:InvoiceLine>\n' +
+'  <cac:LegalMonetaryTotal>\n' +
+'    <cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>\n' +
+'    <cbc:TaxExclusiveAmount currencyID="EUR">100.00</cbc:TaxExclusiveAmount>\n' +
+'    <cbc:TaxInclusiveAmount currencyID="EUR">119.00</cbc:TaxInclusiveAmount>\n' +
+'    <cbc:PayableAmount currencyID="EUR">119.00</cbc:PayableAmount>\n' +
+'  </cac:LegalMonetaryTotal>\n' +
+'</Invoice>';
+const SAMPLE_BROKEN = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+'<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"\n' +
+'         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"\n' +
+'         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">\n' +
+'  <cbc:CustomizationID>urn:fdc:peppol.eu:2017:poacc:billing:3.0</cbc:CustomizationID>\n' +
+'  <cbc:IssueDate>25/09/2026</cbc:IssueDate>\n' +
+'  <cbc:DocumentCurrencyCode>EURO</cbc:DocumentCurrencyCode>\n' +
+'  <cac:AccountingSupplierParty>\n' +
+'    <cac:Party>\n' +
+'      <cac:PartyLegalEntity>\n' +
+'        <cbc:CompanyID>DE123456789</cbc:CompanyID>\n' +
+'      </cac:PartyLegalEntity>\n' +
+'    </cac:Party>\n' +
+'  </cac:AccountingSupplierParty>\n' +
+'  <cac:InvoiceLine><cbc:ID>1</cbc:ID></cac:InvoiceLine>\n' +
+'  <cac:LegalMonetaryTotal>\n' +
+'    <cbc:LineExtensionAmount currencyID="EUR">100.00</cbc:LineExtensionAmount>\n' +
+'    <cbc:TaxExclusiveAmount currencyID="EUR">90.00</cbc:TaxExclusiveAmount>\n' +
+'    <cbc:TaxInclusiveAmount currencyID="EUR">119.00</cbc:TaxInclusiveAmount>\n' +
+'  </cac:LegalMonetaryTotal>\n' +
+'</Invoice>';
 
 function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 
+let lastResult = null;
+
 function render(v){
+  lastResult = v;
   const box = $("result");
   box.style.display = "block";
   let html = "";
+  const okIcon = '<svg class="big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg>';
+  const badIcon = '<svg class="big" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.4v.2"/></svg>';
   if(v.valid){
-    html += `<div class="verdict v-ok">✓ Valid — no rule violations found</div>`;
+    html += '<div class="verdict v-ok">'+okIcon+'<span>Valid — no rule violations found</span></div>';
   }else{
-    html += `<div class="verdict v-bad">✗ ${v.errors.length} issue${v.errors.length===1?"":"s"} found</div>`;
+    html += '<div class="verdict v-bad">'+badIcon+'<span>'+v.errors.length+' issue'+(v.errors.length===1?"":"s")+' found</span></div>';
   }
-  html += `<div class="profile">Detected profile: <code>${esc(v.profile)}</code></div>`;
+  const codes = [...new Set(v.errors.map(e=>e.code))];
+  html += '<div class="meta"><span>Detected profile: <b>'+esc(v.profile)+'</b></span>';
+  if(codes.length) html += '<span>Rule codes: <b>'+codes.length+'</b></span>';
+  html += '</div>';
   if(v.errors.length){
-    html += `<table><thead><tr><th>Rule</th><th>Location</th><th>How to fix</th></tr></thead><tbody>`;
+    html += '<table><thead><tr><th>Rule</th><th>Location</th><th>How to fix</th></tr></thead><tbody>';
     for(const e of v.errors){
-      html += `<tr><td><code>${esc(e.code)}</code></td><td><code>${esc(e.path)}</code></td><td>${esc(e.fix_hint)}</td></tr>`;
+      html += '<tr><td class="rc">'+esc(e.code)+'</td><td><code>'+esc(e.path)+'</code></td><td class="fix">'+esc(e.fix_hint)+'</td></tr>';
     }
-    html += `</tbody></table>`;
+    html += '</tbody></table>';
+    html += '<div class="row"><button class="ghost" id="copyReport">Copy JSON report</button>'+
+            '<button class="ghost" id="downloadReport">Download report</button>'+
+            '<span class="kbdhint" id="copyMsg" style="color:var(--ok)"></span></div>';
   }
   box.innerHTML = html;
+  if($("copyReport")) $("copyReport").addEventListener("click", copyReport);
+  if($("downloadReport")) $("downloadReport").addEventListener("click", downloadReport);
+}
+
+function reportJSON(){
+  if(!lastResult) return null;
+  const codes = [...new Set(lastResult.errors.map(e=>e.code))];
+  return {profile:lastResult.profile, valid:lastResult.valid, codes, errors:lastResult.errors};
+}
+function copyReport(){
+  const j = reportJSON(); if(!j) return;
+  const txt = JSON.stringify(j, null, 2);
+  const done = ()=>{ const m=$("copyMsg"); if(m){ m.textContent="Copied ✓"; setTimeout(()=>m.textContent="",1800);} };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done, ()=>{});
+  }else{
+    const ta=document.createElement("textarea"); ta.value=txt; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); done(); }catch(e){}
+    document.body.removeChild(ta);
+  }
+}
+function downloadReport(){
+  const j = reportJSON(); if(!j) return;
+  const blob = new Blob([JSON.stringify(j,null,2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "validation-report.json";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
 }
 
 function run(){
   const text = $("xml").value;
-  if(!text.trim()){ $("result").style.display="none"; return; }
+  if(!text.trim()){ $("result").style.display="none"; lastResult=null; return; }
   render(validate(text));
 }
 
@@ -295,11 +559,17 @@ $("file").addEventListener("change", ev=>{
   const r = new FileReader(); r.onload = ()=>{ $("xml").value = r.result; run(); }; r.readAsText(f);
 });
 const drop = $("drop");
+const openPicker = ()=>$("file").click();
+drop.addEventListener("click", openPicker);
+drop.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openPicker(); } });
 ["dragenter","dragover"].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add("hot");}));
 ["dragleave","drop"].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove("hot");}));
 drop.addEventListener("drop", e=>{
   const f = e.dataTransfer.files[0]; if(!f) return;
   const r = new FileReader(); r.onload = ()=>{ $("xml").value = r.result; run(); }; r.readAsText(f);
+});
+document.addEventListener("keydown", e=>{
+  if((e.ctrlKey||e.metaKey) && e.key==="Enter"){ e.preventDefault(); run(); }
 });
 </script>
 </body>

@@ -2,85 +2,272 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EN 16931 / Peppol Invoice Validator — Pricing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pricing — EN 16931 / Peppol E-Invoice Validation API &amp; Support</title>
+<meta name="description" content="Hosted Peppol / EN 16931 invoice validation for teams sending e-invoices programmatically. Free open-core CLI, Pro hosted API from $29/mo, Enterprise on-prem from €2,400/yr. No upload required on the free tier.">
+<meta name="keywords" content="Peppol BIS validation API, EN 16931 validation service, e-invoicing validation pricing, bulk invoice validation, XRechnung validator, ERP e-invoice integration">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#0b0f17">
+<link rel="canonical" href="https://invoice-validator.example/golive/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EN 16931 Invoice Validator">
+<meta property="og:title" content="Pricing — EN 16931 / Peppol e-invoice validation">
+<meta property="og:description" content="Hosted validation endpoint, bulk archive checks, and on-prem deployment for teams that send e-invoices programmatically.">
+<meta property="og:url" content="https://invoice-validator.example/golive/">
+<meta property="og:image" content="https://invoice-validator.example/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="EN 16931 / Peppol validation — free open core, Pro hosted API, Enterprise on-prem">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pricing — EN 16931 / Peppol e-invoice validation">
+<meta name="twitter:description" content="Free open-core CLI. Pro hosted API from $29/mo. Enterprise on-prem from €2,400/yr.">
+<meta name="twitter:image" content="https://invoice-validator.example/og-image.png">
+<meta name="geo.region" content="EU">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0f17'/%3E%3Cpath d='M13 18l2.2 2.2L19 15.5' fill='none' stroke='%2343d17f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": "EN 16931 / Peppol Invoice Validation Service",
+      "description": "Hosted and on-prem validation of UBL and CII e-invoices against EN 16931 and Peppol BIS 3.0 business rules.",
+      "brand": {"@type": "Brand", "name": "EN 16931 Validator"},
+      "offers": [
+        {"@type": "Offer","name": "Free","price": "0","priceCurrency": "EUR","description": "Open-core CLI and browser validator"},
+        {"@type": "Offer","name": "Pro","price": "29","priceCurrency": "USD","description": "Hosted validation endpoint and bulk archive checks, per month"},
+        {"@type": "Offer","name": "Enterprise","price": "2400","priceCurrency": "EUR","description": "On-prem deployment, custom CIUS rule packs, integration review, per year"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question","name": "What do I actually pay for if the validator is open source?","acceptedAnswer": {"@type": "Answer","text": "The rules are public and the core is free. You pay for not having to run and maintain a validator yourself: a hosted endpoint, bulk archive validation, rule updates, and an accountable support contact."}},
+        {"@type": "Question","name": "Does the free tier upload my invoices?","acceptedAnswer": {"@type": "Answer","text": "No. The free browser validator runs entirely client-side. Nothing is uploaded. The hosted plans are for teams that prefer a server-side endpoint."}},
+        {"@type": "Question","name": "Is this a certification?","acceptedAnswer": {"@type": "Answer","text": "No. It is a linter for a documented subset of EN 16931 and Peppol BIS rules. It reduces common rejection causes but does not guarantee acceptance by every access point."}}
+      ]
+    }
+  ]
+}
+</script>
 <style>
-  :root{--bg:#0e1116;--panel:#161b22;--fg:#e6edf3;--muted:#8b949e;--accent:#2f81f7;--ok:#3fb950}
+  :root{
+    --bg:#0b0f17; --bg2:#0e131d; --panel:#141b26; --panel2:#182130;
+    --line:#26303f; --line2:#313c4e;
+    --fg:#e8eef7; --mut:#9aa7b8; --mut2:#6b7a8d;
+    --acc:#4f8fff; --acc-hi:#6ba0ff; --acc-ink:#04122b;
+    --ok:#43d17f; --err:#ff6b6b; --warn:#f0b429;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 14px 36px -14px rgba(0,0,0,.6);
+    --radius:14px;
+  }
   *{box-sizing:border-box}
-  body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg)}
-  .wrap{max-width:960px;margin:0 auto;padding:48px 20px}
-  h1{font-size:2rem;margin:0 0 8px}
-  h2{font-size:1.35rem;margin:0 0 6px}
-  .sub{color:var(--muted);margin:0 0 32px}
-  .banner{background:#1c2128;border:1px solid #30363d;border-left:4px solid var(--accent);padding:14px 16px;border-radius:8px;margin:24px 0;color:var(--muted);font-size:.95rem}
-  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-  .card{background:var(--panel);border:1px solid #30363d;border-radius:10px;padding:24px;display:flex;flex-direction:column}
-  .card.best{border-color:var(--accent)}
-  .price{font-size:1.9rem;font-weight:700;margin:8px 0 2px}
-  .price small{font-size:.85rem;color:var(--muted);font-weight:400}
-  ul{padding-left:20px;margin:12px 0 0}
-  li{margin:6px 0}
-  .tag{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
-  footer{margin-top:40px;padding-top:20px;border-top:1px solid #30363d;color:var(--muted);font-size:.9rem}
-  a{color:var(--accent)}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:
+      radial-gradient(1100px 520px at 82% -10%, rgba(79,143,255,.15), transparent 60%),
+      radial-gradient(900px 480px at 4% 6%, rgba(67,209,127,.08), transparent 58%),
+      var(--bg);
+    color:var(--fg);font:15px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:var(--acc-hi);text-underline-offset:2px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  code{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;background:#0c121c;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;color:#cfe0f5}
+  .sitehead{position:sticky;top:0;z-index:20;backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(11,15,23,.78);border-bottom:1px solid var(--line)}
+  .sitehead .wrap{display:flex;align-items:center;gap:14px;height:58px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--fg)}
+  .brand span{font-size:15px}
+  .navlinks{margin-left:auto;display:flex;gap:20px;align-items:center}
+  .navlinks a{color:var(--mut);text-decoration:none;font-size:13.5px;font-weight:500}
+  .navlinks a:hover{color:var(--fg)}
+  @media (max-width:620px){.navlinks{display:none}}
+  header.hero{padding:52px 0 10px;text-align:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--acc-hi);
+    background:rgba(79,143,255,.10);border:1px solid rgba(79,143,255,.32);
+    padding:5px 11px;border-radius:999px;margin-bottom:18px}
+  h1{font-size:clamp(28px,4.4vw,42px);line-height:1.14;letter-spacing:-.022em;margin:0 0 14px;font-weight:800}
+  .lede{font-size:clamp(16px,2vw,18.5px);color:var(--mut);max-width:64ch;margin:0 auto 26px}
+  .banner{display:flex;gap:12px;align-items:flex-start;background:rgba(79,143,255,.07);
+    border:1px solid rgba(79,143,255,.28);border-left:3px solid var(--acc);
+    padding:14px 16px;border-radius:10px;margin:26px auto;max-width:860px;color:var(--mut);font-size:14px;text-align:left}
+  .banner b{color:var(--fg)}
+  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));margin-top:8px}
+  .card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);
+    border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+  .card.best{border-color:var(--acc);position:relative}
+  .card.best::after{content:"MOST POPULAR";position:absolute;top:-11px;left:26px;font-size:10.5px;font-weight:800;
+    letter-spacing:.08em;background:var(--acc);color:var(--acc-ink);padding:3px 10px;border-radius:999px}
+  .tag{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--acc-hi);font-weight:700}
+  h2{font-size:1.3rem;margin:8px 0 2px;letter-spacing:-.01em}
+  .price{font-size:2rem;font-weight:800;margin:6px 0 2px;letter-spacing:-.02em}
+  .price small{font-size:.85rem;color:var(--mut);font-weight:500;letter-spacing:0}
+  .card p.who{color:var(--mut);font-size:13.5px;margin:6px 0 14px;min-height:40px}
+  ul{list-style:none;padding:0;margin:6px 0 22px}
+  li{margin:9px 0;padding-left:26px;position:relative;font-size:14px;color:var(--fg)}
+  li::before{content:"";position:absolute;left:0;top:6px;width:15px;height:15px;border-radius:50%;
+    background:rgba(67,209,127,.14);border:1px solid rgba(67,209,127,.45)}
+  li::after{content:"";position:absolute;left:4.5px;top:9.5px;width:6px;height:3px;border-left:1.6px solid var(--ok);border-bottom:1.6px solid var(--ok);transform:rotate(-45deg)}
+  .card .cta{margin-top:auto;display:block;text-align:center;padding:12px 18px;border-radius:10px;
+    font-weight:700;text-decoration:none;border:1px solid transparent}
+  .cta.primary{background:var(--acc);color:var(--acc-ink);box-shadow:0 8px 20px -10px rgba(79,143,255,.85)}
+  .cta.primary:hover{background:var(--acc-hi)}
+  .cta.outline{border-color:var(--line2);color:var(--fg);background:var(--panel2)}
+  .cta.outline:hover{border-color:var(--acc)}
+  section{padding:30px 0}
+  h3.sec{font-size:22px;letter-spacing:-.015em;margin:0 0 16px}
+  details{border:1px solid var(--line);border-radius:11px;padding:14px 16px;background:var(--panel);margin:10px 0}
+  details[open]{background:var(--panel2)}
+  summary{cursor:pointer;font-weight:600;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+";color:var(--acc);margin-right:10px;font-weight:700}
+  details[open] summary::before{content:"-"}
+  details p{margin:10px 0 0;color:var(--mut);font-size:14px}
+  .cmp{width:100%;border-collapse:collapse;font-size:13.5px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .cmp th,.cmp td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
+  .cmp th{color:var(--mut);background:rgba(255,255,255,.02);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+  .cmp tr:last-child td{border-bottom:0}
+  .cmp td.y{color:var(--ok);font-weight:600}
+  .cmp td.n{color:var(--mut2)}
+  footer{margin-top:20px;padding:26px 0;border-top:1px solid var(--line);color:var(--mut);font-size:13.5px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+  footer .links{display:flex;gap:18px;flex-wrap:wrap}
+  .note{font-size:12.5px;color:var(--mut2);margin-top:10px}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>EN 16931 / Peppol Invoice Validator</h1>
-  <p class="sub">Standards-correct validation for European e-invoicing (EN&nbsp;16931, Peppol&nbsp;BIS, XRechnung)&nbsp;— UBL &amp; CII.</p>
+<header class="sitehead">
+  <div class="wrap">
+    <a class="brand" href="../index.html">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0b0f17"/><path d="M9 9h11l4 4v10a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1z" fill="none" stroke="#4f8fff" stroke-width="1.6"/><path d="M19 9v4h4" fill="none" stroke="#4f8fff" stroke-width="1.6"/><path d="M13 18l2.2 2.2L19 15.5" fill="none" stroke="#43d17f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>EN&nbsp;16931&nbsp;Validator</span>
+    </a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="../index.html">Validate free</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
 
+<header class="hero wrap">
+  <span class="eyebrow">Stop rejected invoices before they stall a payment</span>
+  <h1>Validation you can build on — without running a validator yourself.</h1>
+  <p class="lede">
+    The rule engine is open source and free forever. The paid plans are for teams that send e-invoices
+    programmatically and would rather not host, update, and answer for a validator on their own.
+  </p>
+</header>
+
+<main class="wrap">
   <div class="banner">
-    This service is operated by an <strong>autonomous software agent</strong>. That is stated plainly
-    on purpose. The rule engine is open and auditable; you can verify what it does before paying anything.
-    There are no invented customers, logos, or uptime claims on this page.
+    <span aria-hidden="true">⚖️</span>
+    <span>This service is operated by an <b>autonomous software agent</b> — stated plainly on purpose.
+    The engine is open and auditable, so you can verify exactly what it does before paying anything.
+    There are no invented customers, logos, uptime claims, or testimonials on this page.</span>
   </div>
 
-  <div class="grid">
-    <div class="card">
-      <div class="tag">Free</div>
-      <h2>Open Core</h2>
-      <div class="price">$0</div>
-      <ul>
-        <li>Local <code>ublcheck</code> CLI</li>
-        <li>Single-file validation</li>
-        <li>Human-readable &amp; JSON report</li>
-        <li>Self-serve, no account</li>
-      </ul>
-    </div>
+  <section id="pricing">
+    <div class="grid">
+      <div class="card">
+        <div class="tag">Free · Open core</div>
+        <h2>Run it yourself</h2>
+        <div class="price">$0</div>
+        <p class="who">For developers and accountants who want to check an invoice now, offline, with nothing to sign up for.</p>
+        <ul>
+          <li><code>ublcheck</code> CLI, zero dependencies</li>
+          <li>In-browser validator — nothing uploaded</li>
+          <li>Single-file validation, human + JSON output</li>
+          <li>Self-serve, no account</li>
+        </ul>
+        <a class="cta outline" href="../index.html">Open the free validator</a>
+      </div>
 
-    <div class="card best">
-      <div class="tag">Pro</div>
-      <h2>Hosted Validation</h2>
-      <div class="price">$29<small> / month</small></div>
-      <ul>
-        <li>Hosted endpoint: POST an invoice, get the rule report</li>
-        <li>Bulk / batch validation of an archive</li>
-        <li>EU-hosted</li>
-        <li>Email support, 2-business-day response</li>
-      </ul>
-    </div>
+      <div class="card best">
+        <div class="tag">Pro</div>
+        <h2>Hosted validation</h2>
+        <div class="price">$29<small> / month</small></div>
+        <p class="who">For teams sending invoices programmatically who don't want a server to babysit.</p>
+        <ul>
+          <li>Hosted endpoint: <code>POST /validate</code>, get the rule report</li>
+          <li>Bulk validation of an archive — <code>POST /validate-batch</code></li>
+          <li>EU-hosted</li>
+          <li>Email support, 2-business-day response</li>
+          <li>Rule updates handled for you</li>
+        </ul>
+        <a class="cta primary" href="#contact">Get started</a>
+      </div>
 
-    <div class="card">
-      <div class="tag">Enterprise</div>
-      <h2>Embedded &amp; On-Prem</h2>
-      <div class="price">from €2,400<small> / year</small></div>
-      <ul>
-        <li>On-prem / private deployment</li>
-        <li>Custom CIUS rule packs &amp; mapping help</li>
-        <li>Integration review for your pipeline</li>
-        <li>Named support contact</li>
-      </ul>
+      <div class="card">
+        <div class="tag">Enterprise</div>
+        <h2>Embedded &amp; on-prem</h2>
+        <div class="price">from €2,400<small> / year</small></div>
+        <p class="who">For ERPs and accounting vendors embedding compliant validation in their own product.</p>
+        <ul>
+          <li>On-prem / private deployment</li>
+          <li>Custom CIUS rule packs &amp; mapping help</li>
+          <li>Integration review for your pipeline</li>
+          <li>Named support contact</li>
+          <li>Auditable — someone is accountable</li>
+        </ul>
+        <a class="cta outline" href="#contact">Talk to us</a>
+      </div>
     </div>
+    <p class="note">Prices in USD for Pro and EUR for Enterprise. No lock-in: the free CLI always keeps working.</p>
+  </section>
+
+  <section>
+    <h3 class="sec">Why pay when the engine is free?</h3>
+    <table class="cmp">
+      <thead><tr><th>What you get</th><th>Free</th><th>Pro</th><th>Enterprise</th></tr></thead>
+      <tbody>
+        <tr><td>Blazing-fast rule checks</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+        <tr><td>Nothing to host or update</td><td class="n">You run it</td><td class="y">✓</td><td class="y">✓</td></tr>
+        <tr><td>Bulk / archive validation</td><td class="n">—</td><td class="y">✓</td><td class="y">✓</td></tr>
+        <tr><td>Custom CIUS rule packs</td><td class="n">—</td><td class="n">—</td><td class="y">✓</td></tr>
+        <tr><td>Named, accountable support</td><td class="n">Community</td><td>Email, 2-day</td><td class="y">Named contact</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="faq">
+    <h3 class="sec">Frequently asked</h3>
+    <details open>
+      <summary>What do I actually pay for if the validator is open source?</summary>
+      <p>The rules are public and the core is free. You pay for <em>not</em> having to run and maintain a validator: a hosted endpoint, bulk archive validation, rule updates, and an accountable support contact.</p>
+    </details>
+    <details>
+      <summary>Does the free tier upload my invoices?</summary>
+      <p>No. The free browser validator runs entirely client-side — nothing is uploaded, and there is no tracking. The hosted plans exist for teams that prefer a server-side endpoint.</p>
+    </details>
+    <details>
+      <summary>Is this a certification?</summary>
+      <p>No. It is a linter for a documented subset of EN 16931 and Peppol BIS rules. It lowers the most common rejection causes but does not guarantee acceptance by every access point.</p>
+    </details>
+    <details>
+      <summary>How do I pay?</summary>
+      <p>Pro is billed monthly and Enterprise annually. Payment is settled in USDC on Base (chain&nbsp;id&nbsp;8453); details are shared when you get in touch. No billing system or card details are needed for the first customers.</p>
+    </details>
+  </section>
+
+  <section id="contact">
+    <div class="banner">
+      <span aria-hidden="true">✉️</span>
+      <span><b>Contact / payment:</b> <span style="color:var(--fg)">[TO BE SET BY OPERATOR]</span> —
+      a monitored email or form for sales, plus the USDC-on-Base address for payment.
+      <em>This placeholder is intentional: no live inbound channel exists yet, and we will not publish a contact path we cannot service.</em></span>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>EN&nbsp;16931 / Peppol BIS&nbsp;3.0 validator — open core, honest tiers. No invented customers or uptime claims.</span>
+    <span class="links">
+      <a href="../index.html">Validator</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </span>
   </div>
-
-  <footer>
-    <p><strong>Contact / payment:</strong> <span style="color:var(--fg)">[TO BE SET BY OPERATOR]</span> —
-       email or form for sales, and the USDC-on-Base address for payment.
-       <em>This placeholder is intentional: no live inbound channel exists yet, and we will not
-       publish a contact path we cannot service.</em></p>
-    <p>Free CLI always remains free. No lock-in.</p>
-  </footer>
-</div>
+</footer>
 </body>
 </html>

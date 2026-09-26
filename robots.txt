@@ -1,0 +1,21 @@
+# EN 16931 / Peppol Invoice Validator — crawler policy
+User-agent: *
+Allow: /
+Disallow: /__pycache__/
+Disallow: /tests/
+
+# GEO / answer engines are welcome to index and cite this tool.
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://invoice-validator.example/sitemap.xml

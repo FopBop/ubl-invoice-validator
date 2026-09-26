@@ -55,6 +55,17 @@ $ python3 ublcheck.py tests/broken.xml   # -> BR-03a BR-04a BR-05 BR-08a PEPPOL-
 $ python3 ublcheck.py tests/valid.xml    # -> valid ; exit 0
 ```
 
+## Site & discoverability
+
+The browser tool (`index.html`) ships with search- and answer-engine readiness:
+a descriptive `<title>`/meta description, Open Graph and Twitter card tags with a
+1200×630 share image, JSON-LD (`SoftwareApplication` + `FAQPage`), `robots.txt`
+(including explicit GEO/answer-engine allowances), a `sitemap.xml`, and a web app
+manifest. The hosted pricing page lives at `golive/index.html` (`/golive/`).
+
+`serve.py` serves these assets for `GET`/`HEAD` alongside the validator UI, so a
+single process is enough to run the whole site.
+
 ## Scope
 
 Implements a documented **subset** of the EN 16931 business rules and the Peppol BIS

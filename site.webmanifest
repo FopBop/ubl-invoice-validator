@@ -1,0 +1,38 @@
+{
+  "name": "EN 16931 / Peppol Invoice Validator",
+  "short_name": "Invoice Validator",
+  "description": "Free, private, in-browser validator for EN 16931 and Peppol BIS 3.0 e-invoices.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b0f17",
+  "theme_color": "#0b0f17",
+  "icons": [
+    {
+      "src": "favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0f17'/%3E%3Cpath d='M13 18l2.2 2.2L19 15.5' fill='none' stroke='%2343d17f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "lang": "en",
+  "categories": [
+    "business",
+    "productivity",
+    "developer"
+  ]
+}

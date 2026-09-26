@@ -67,36 +67,67 @@ python3 ublcheck.py a.xml b.xml c.xml    # batch
 PORT=8080 python3 serve.py
 ```
 
-- `GET /`          → serves `index.html`
-- `GET /health`    → `{"ok": true}`
-- `POST /validate` → body = invoice XML; returns `{profile, valid, codes, errors}`
-- `POST /validate-batch` → body = a ZIP archive of invoice XML files; returns an
-  aggregate report plus a per-file report (Pro-tier "bulk validation of an archive")
+- `GET /` / `HEAD /`      → serves `index.html` (browser validator)
+- `GET /health`            → `{"ok": true}`
+- `POST /validate`         → body = invoice XML; returns `{profile, valid, codes, errors}`
+- `POST /validate-batch`   → body is EITHER a ZIP archive of invoice XML files OR a
+  JSON array of `{name, xml}` objects; returns an aggregate summary plus a
+  per-invoice report (Pro-tier "bulk validation of an archive")
+- Static assets (GET/HEAD): `robots.txt`, `sitemap.xml`, `site.webmanifest`,
+  `og-image.png`, `favicon-32.png`, `apple-touch-icon.png`, and the
+  `/golive/` pricing page. Served from the project root with a MIME allow-list
+  and path-traversal protection; source files (`.py`) are never served.
 
 ```bash
 curl -s -X POST --data-binary @invoice.xml http://localhost:8080/validate
 curl -s -X POST --data-binary @invoices.zip http://localhost:8080/validate-batch
+curl -s -X POST -H 'Content-Type: application/json' \
+     --data-binary @invoices.json http://localhost:8080/validate-batch
 ```
 
-`POST /validate-batch` response shape:
+`POST /validate-batch` request body — either form:
+
+```jsonc
+// ZIP: each file is one invoice, named by its archive path.
+// JSON: an array of objects, one per invoice.
+[ { "name": "a.xml", "xml": "<Invoice>…</Invoice>" }, … ]
+```
+
+`POST /validate-batch` response shape — the aggregate is exactly
+`{total, valid, invalid, by_code}`, plus `results` (one per invoice):
 
 ```json
 {
-  "total": 3, "valid": 1, "invalid": 2,
-  "by_code": { "BR-03a": 1, "XML-001": 1, "…": 1 },
-  "results": [ { "name": "a.xml", "valid": true, "profile": "en16931",
-                 "codes": [], "errors": [] }, … ]
+  "total": 2, "valid": 1, "invalid": 1,
+  "by_code": { "BR-03a": 1, "BR-04a": 1, "PEPPOL-001": 1 },
+  "results": [
+    { "name": "good.xml", "valid": true,  "code": null,   "profile": "en16931",
+      "codes": [], "errors": [] },
+    { "name": "bad.xml",  "valid": false, "code": "BR-03a", "profile": "peppol-bis-3",
+      "codes": ["BR-03a", "BR-04a", "PEPPOL-001"], "errors": [ … ] }
+  ]
 }
 ```
 
-Limits: ≤ 5 MB body, ≤ 200 archive entries. Non-invoice files (e.g. `notes.txt`)
-are reported as invalid with an `XML-002` error rather than crashing the batch.
-Directories and `__MACOSX` entries are skipped.
+Each result carries `name` (the entry name), `valid`, and `code` (the primary/first
+rule code, or `null` when valid); the full `codes`/`errors` arrays are included too.
 
-**Verified this cycle:** a 3-entry ZIP (`valid.xml`, `broken.xml`, `notes.txt`)
-returned `total=3, valid=1, invalid=2` with correct `by_code`, and single-file
-`POST /validate` still returned the same result as before the change
-(backward-compatible).
+Limits / safety caps (both input forms): ≤ 5 MB request body, ≤ **200** entries,
+≤ **50 MB** total uncompressed size (zip-bomb protection). Over-limit requests are
+rejected up-front with a `413` and a descriptive `{"error": …}` body; malformed
+bodies get a `400`. Only the shared `validate()` used by `POST /validate` performs
+the checks — no validation logic is duplicated.
+
+The single-file `POST /validate` endpoint is unchanged (same request body and
+same `{profile, valid, codes, errors}` response as before).
+
+**Verified this cycle:** the new `tests/test_validate_batch.py` starts `serve.py`
+on an ephemeral port and exercises both input forms end to end (all 11 assertions
+pass). A ZIP of `valid.xml` + `broken.xml` returns `total=2, valid=1, invalid=1`
+with `by_code` counting the broken invoice's rule codes; the JSON-array form
+returns the same aggregate; 201-entry and >50 MB-uncompressed requests are
+rejected with `413`; and single-file `POST /validate` still returns the exact
+same bytes as before the change (backward-compatible).
 
 **Status:** VERIFIED this cycle. `serve.py` imports the verified `validate()`; both
 `POST /validate` and `POST /validate-batch` were started locally and returned the
